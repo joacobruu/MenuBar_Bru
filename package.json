@@ -1,0 +1,17 @@
+{
+  "name": "paginamenubar",
+  "version": "1.0.0",
+  "description": "Pagina web para mostrar el menu de un bar y pedir desde ahi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss scss/style.scss css/style.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "author": "Joaquin Bru",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.12"
+  }
+}
