@@ -9,13 +9,12 @@
 </head>
 <body>
   <header class="header">
+    <h1>BAR</h1>
     <ul>
-      <li class="header_links"><a href="#">Menu</a></li>
-      <li class="header_links"><a href="#">Carrito</a></li>
+      <li class="header_links"><a href="index.html">Menu</a></li>
+      <li class="header_links"><a href="./pages/pedido.html">Pedido</a></li>
     </ul>
   </header>
-
-  <h1>BAR</h1>
 
   <section class="menu_container">
     <article class="menu-comidas_container">
@@ -26,47 +25,34 @@
           <p>$250</p>
         </div>
         <div class="comida-cantidad">
-          <label for="">Cantidad:</label>
-          <input type="number" maxlength="2" placeholder="0">
-          <input type="submit" value="Agregar">
+          <button class="cantidad_agregar-btn">-</button>
+          <input type="number" class="cantidad_cantidad" placeholder="0" readonly>
+          <button class="cantidad_agregar-btn">+</button>
+          <button class="agregar-btn">Agregar</button>
         </div>
       </div>
-      <div class="comidas">
-        <div class="comidas-img"><img src="img/pizza.jpg" alt="Pizza"></div>
-        <div class="comida-detalle">
-          <p>Pizza</p>
+    </article>
+  </section>
+
+  <section class="pedido_container">
+    <article class="pedido-item_container">
+      <div class="item">
+        <div class="item-img"><img src="img/hamburguesa.jpg" alt="Hamburguesa"></div>
+        <div class="item-detalle">
+          <p>Hamburguesa</p>
           <p>$250</p>
+          <button class="eliminar-btn">Eliminar</button>
         </div>
-        <div class="comida-cantidad">
-          <label for="">Cantidad:</label>
-          <input type="number" min="0" max="99" placeholder="0">
-          <input type="submit" value="Agregar">
-        </div>
-      </div>
-      <div class="comidas">
-        <div class="comidas-img"><img src="img/papasFritas.jpg" alt="Papas Fritas"></div>
-        <div class="comida-detalle">
-          <p>Papas del chef</p>
-          <p>$250</p>
-        </div>
-        <div class="comida-cantidad">
-          <label for="">Cantidad:</label>
-          <input type="number" min="0" max="99" placeholder="0">
-          <input type="submit" value="Agregar">
+        <div class="item-cantidad">
+          <button class="item-cantidad_agregar-btn">+</button>
+          <input type="number" class="item-cantidad_cantidad" placeholder="0" readonly>
+          <button class="item-cantidad_agregar-btn">-</button>
         </div>
       </div>
-      <div class="comidas">
-        <div class="comidas-img"><img src="img/bastonesMuzarella.jpg" alt="Bastones de Muzarella"></div>
-        <div class="comida-detalle">
-          <p>Bastones de muzarella</p>
-          <p>$250</p>
-        </div>
-        <div class="comida-cantidad">
-          <label for="">Cantidad:</label>
-          <input type="number" min="0" max="99" placeholder="0">
-          <input type="submit" value="Agregar">
-        </div>
-      </div>
+    </article>
+    <article class="pedido-total_container">
+      <p>Total:</p>
+      <p>$300</p>
     </article>
   </section>
 </body>

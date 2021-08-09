@@ -17,11 +17,17 @@ a, li {
 /*HEADER*/
 .header {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 5rem;
+  height: 11rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid antiquewhite;
+
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+    margin: 1rem 0;
+  }
 
   .header_links {
     display: inline-block;
@@ -33,12 +39,7 @@ a, li {
   }
 }
 
-h1 {
-  text-align: center;
-  font-size: 4rem;
-  margin: 2rem 0;
-}
-
+/*MENU*/
 .menu_container {
   margin: 0 2rem;
 
@@ -75,20 +76,145 @@ h1 {
       }
 
       .comida-cantidad {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        label {
-          font-size: 1.4rem;
-          font-weight: bold;
+        .cantidad_agregar-btn {
+          margin: 0 2rem;
+          font-size: 2rem;
+          font-weight: 900;
+          background-color: transparent;
+          border: none;
         }
         
         input {
-          width: 4rem;
+          width: 10%;
           text-align: center;
+          font-size: 2rem;
+          font-weight: 900;
+          color: antiquewhite;
+          background-color: transparent;
+          border: none;
+        }
+
+        .agregar-btn {
+          display: block;
+          background-color: rgb(16, 173, 16);
+          border: none;
           font-size: 1.4rem;
-          color: black;
-          background-color: antiquewhite;
+          font-weight: bold;
+          padding: .5rem;
         }
       }
+    }
+  }
+}
+
+/*PEDIDO*/
+.pedido_container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
+
+  .pedido-item_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1rem;
+      background-color: transparent;
+
+      .item-img {
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1rem;
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .item-detalle {
+        background-color: transparent;
+        
+        p {
+          font-size: 1.4rem;
+          font-weight: bold;
+          color: black;
+          background-color: transparent;
+        }
+
+        .eliminar-btn {
+          background-color: red;
+          border: none;
+          font-size: 1.4rem;
+          font-weight: bold;
+          margin-top: 1rem;
+          padding: .5rem;
+        }
+      }        
+
+      .item-cantidad {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 2rem;
+        width: 3rem;
+        background-color: transparent;
+
+        .item-cantidad_agregar-btn {
+          font-size: 3rem;
+          font-weight: bold;
+          text-align: center;
+          margin: 1rem 0;
+          background-color: transparent;
+          border: none;
+          color: black;
+        }
+
+        .item-cantidad_cantidad {
+          width: 2rem;
+          text-align: center;
+          font-size: 1.4rem;
+          font-weight: 900;
+          color: black;
+          background-color: transparent;
+          border: none;
+        }
+      }
+    }    
+  }
+
+  .pedido-total_container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 2rem;
+    background-color: transparent;
+
+    p {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0 1rem;
+      color: black;
+      background-color: transparent;
     }
   }
 }
