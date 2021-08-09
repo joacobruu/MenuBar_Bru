@@ -13,20 +13,19 @@ a, li {
 /*HEADER*/
 .header {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   height: 11rem;
   margin-bottom: 2rem;
   border-bottom: 2px solid antiquewhite; }
   .header h1 {
     text-align: center;
     font-size: 4rem;
-    margin: 1rem 0; }
-  .header .header_links {
-    display: inline-block;
-    margin: 0 1.6rem; }
-    .header .header_links a {
-      font-size: 1.6rem; }
+    margin-left: 4rem; }
+  .header i {
+    font-size: 2rem;
+    margin-right: 4rem;
+    cursor: pointer; }
 
 /*MENU*/
 .menu_container {
@@ -57,12 +56,6 @@ a, li {
         display: flex;
         align-items: center;
         justify-content: center; }
-        .menu_container .menu-comidas_container .comidas .comida-cantidad .cantidad_agregar-btn {
-          margin: 0 2rem;
-          font-size: 2rem;
-          font-weight: 900;
-          background-color: transparent;
-          border: none; }
         .menu_container .menu-comidas_container .comidas .comida-cantidad input {
           width: 10%;
           text-align: center;
@@ -81,14 +74,13 @@ a, li {
 
 /*PEDIDO*/
 .pedido_container {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 70%;
-  display: flex;
+  height: 100vh;
+  display: none;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: antiquewhite; }
   .pedido_container .pedido-item_container {
     display: flex;
@@ -133,14 +125,6 @@ a, li {
         margin-left: 2rem;
         width: 3rem;
         background-color: transparent; }
-        .pedido_container .pedido-item_container .item .item-cantidad .item-cantidad_agregar-btn {
-          font-size: 3rem;
-          font-weight: bold;
-          text-align: center;
-          margin: 1rem 0;
-          background-color: transparent;
-          border: none;
-          color: black; }
         .pedido_container .pedido-item_container .item .item-cantidad .item-cantidad_cantidad {
           width: 2rem;
           text-align: center;
@@ -153,7 +137,6 @@ a, li {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin: 0 2rem;
     background-color: transparent; }
     .pedido_container .pedido-total_container p {
       font-size: 2rem;
@@ -161,3 +144,11 @@ a, li {
       margin: 0 1rem;
       color: black;
       background-color: transparent; }
+  .pedido_container label {
+    background-color: transparent;
+    cursor: pointer; }
+    .pedido_container label i {
+      font-size: 3rem;
+      background-color: transparent;
+      color: black;
+      margin: 1rem 1rem; }
