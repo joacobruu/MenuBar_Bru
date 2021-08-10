@@ -1,20 +1,21 @@
-const togglePedidos = (id) => {
-  const e = document.querySelector(id);
-  if(e.style.display == 'none') {
-    e.style.display = 'flex';
-  } else {
-    e.style.display = 'none';
-  };
-};
-
 const items = [];
 let salir = false;
 let opcion = 0;
 let cantidad;
 const IVA = 0.21;
-let total = 0;
+
+class Producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre;
+    this.precio = precio;
+  };
+};
 
 class Pedido {
+  constructor() {
+    this.total = 0;
+  };
+
   agregarProductos(producto) {
     items.push(producto);
   };
@@ -35,13 +36,11 @@ class Pedido {
     let iva = this.getSubTotal() * IVA;
     return iva;
   };
-};
 
-class Producto {
-  constructor(nombre, precio) {
-    this.nombre = nombre;
-    this.precio = precio;
-  };
+  getTotal() {
+    this.total += (this.getSubTotal() + this.getIVA());
+    return this.total;
+  }
 };
 
 do {
@@ -52,71 +51,71 @@ do {
                          "\n4) Pizza - $700" +
                          "\n5) Gaseosa - $100" +
                          "\n6) Agua mineral - $70" +
-                         "\n7) Pedido Completo" +
+                         "\n\n7) Pedido Completo" +
                          "\n8) Cancelar y salir"));
 
-switch (opcion) {
-  case 1:
-    cantidad = parseInt(prompt("Cantidad de pintas?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Pinta de Cerveza', 250));
-    };
-    break;
+  switch (opcion) {
+    case 1:
+      cantidad = parseInt(prompt("Cantidad de pintas?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Pinta de Cerveza', 250));
+      };
+      break;
 
-  case 2:
-    cantidad = parseInt(prompt("Cantidad de papas fritas?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Papas Fritas con cheddar', 500));
-    };
-    break;
+    case 2:
+      cantidad = parseInt(prompt("Cantidad de papas fritas?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Papas Fritas con cheddar', 500));
+      };
+      break;
 
-  case 3:
-    cantidad = parseInt(prompt("Cantidad de hamburguesas?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Hamburguesa', 350));
-    };
-    break;
+    case 3:
+      cantidad = parseInt(prompt("Cantidad de hamburguesas?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Hamburguesa', 350));
+      };
+      break;
 
-  case 4:
-    cantidad = parseInt(prompt("Cantidad de pizzas?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Pizza', 700));
-    };
-    break;
+    case 4:
+      cantidad = parseInt(prompt("Cantidad de pizzas?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Pizza', 700));
+      };
+      break;
 
-  case 5:
-    cantidad = parseInt(prompt("Cantidad de gaseosas?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Gaseosa', 100));
-    };
-    break;
+    case 5:
+      cantidad = parseInt(prompt("Cantidad de gaseosas?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Gaseosa', 100));
+      };
+      break;
 
-  case 6:
-    cantidad = parseInt(prompt("Cantidad de aguas minerales?"));
-    for(let i = 0; i < cantidad; i++) {
-      pedido.agregarProductos(new Producto('Agua mineral', 70));
-    };
-    break;
+    case 6:
+      cantidad = parseInt(prompt("Cantidad de aguas minerales?"));
+      for(let i = 0; i < cantidad; i++) {
+        pedido.agregarProductos(new Producto('Agua mineral', 70));
+      };
+      break;
 
-  case 7:
-    alert("Pedido realizado!" +
-          "\nSubtotal: " + "$" + pedido.getSubTotal() +
-          "\nIVA (%21): " + "$" + pedido.getIVA() +
-          "\nTotal: " + "$" + (pedido.getSubTotal() + pedido.getIVA()));
-    pedido.getItems().forEach((item) => {
-      console.log(item.nombre + ' $' + item.precio);
-    });
-    salir = true;
-    break;
+    case 7:
+      alert("Pedido realizado!" +
+            "\nSubtotal: " + "$" + pedido.getSubTotal() +
+            "\nIVA (%21): " + "$" + pedido.getIVA() +
+            "\nTotal: " + "$" + pedido.getTotal());
+      pedido.getItems().forEach((item) => {
+        console.log(item.nombre + ' $' + item.precio);
+      });
+      salir = true;
+      break;
 
-  case 8:
-    alert("Pedido cancelado");
-    salir = true;
-    break;
+    case 8:
+      alert("Pedido cancelado");
+      salir = true;
+      break;
 
-  default:
-    alert("Ingrese una opcion valida");
-    break;
-}
+    default:
+      alert("Ingrese una opcion valida");
+      break;
+  };
 } while (!salir);
 
