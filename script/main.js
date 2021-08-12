@@ -8,6 +8,7 @@ const togglePedidos = (id) => {
   };
 };
 
+
 const items = [];
 let salir = false;
 let opcion = 0;
