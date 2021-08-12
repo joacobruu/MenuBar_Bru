@@ -1,9 +1,20 @@
+/*Probando funcionalidades para la pagina*/
+const togglePedidos = (id) => {
+  const e = document.querySelector(id);
+  if(e.style.display == 'none') {
+    e.style.display = 'flex';
+  } else {
+    e.style.display = 'none';
+  };
+};
+
 const items = [];
 let salir = false;
 let opcion = 0;
 let cantidad;
 const IVA = 0.21;
 
+/*///CLASE PRODUCTOS///*/
 class Producto {
   constructor(nombre, precio) {
     this.nombre = nombre;
@@ -11,6 +22,7 @@ class Producto {
   };
 };
 
+/*///CLASE PEDIDOS///*/
 class Pedido {
   constructor() {
     this.total = 0;
@@ -20,7 +32,11 @@ class Pedido {
     items.push(producto);
   };
 
+  /*///aplicando sort() para ordenar de menor a mayor precio///*/
   getItems() {
+    items.sort((a, b) => {
+      return a.precio - b.precio;
+    })
     return items;
   };
 
