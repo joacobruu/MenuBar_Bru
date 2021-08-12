@@ -8,7 +8,6 @@ const togglePedidos = (id) => {
   };
 };
 
-
 const items = [];
 let salir = false;
 let opcion = 0;
@@ -59,6 +58,7 @@ class Pedido {
     return this.total;
   }
 };
+
 
 do {
   const pedido = new Pedido();

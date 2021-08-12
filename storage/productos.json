@@ -1,7 +1,7 @@
 {
-  "bar": [
+  "bar":
     {
-      "comidas": [
+      "comidas":
         {
           "hamburguesas" : [
             {
@@ -71,8 +71,7 @@
               "precio": "500"
             }
           ]
-        }
-      ],
+        },
 
       "cervezas" : [
         {
@@ -146,5 +145,4 @@
         }
       ]
     }
-  ]
 }
