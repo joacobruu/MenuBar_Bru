@@ -1,13 +1,3 @@
-/*Probando funcionalidades para la pagina*/
-const togglePedidos = (id) => {
-  const e = document.querySelector(id);
-  if(e.style.display == 'none') {
-    e.style.display = 'flex';
-  } else {
-    e.style.display = 'none';
-  };
-};
-
 const PRODUCTOS = {
   "nombre": "Bar",
   "direccion": "Calle falsa 123 - Vicente Lopez",
@@ -85,37 +75,37 @@ const PRODUCTOS = {
     {
       "id": 11,
       "nombre": "Blonde Ale",
-      "cerveceria": "BABA",
+      "descripcion": "BABA",
       "precio": 250
     },
     {
       "id": 12,
       "nombre": "Honey",
-      "cerveceria": "BABA",
+      "descripcion": "BABA",
       "precio": 250
     },
     {
       "id": 13,
       "nombre": "Scotch",
-      "cerveceria": "BIERHAUS",
+      "descripcion": "BIERHAUS",
       "precio": 250
     },
     {
       "id": 14,
       "nombre": "APA",
-      "cerveceria": "MINGA",
+      "descripcion": "MINGA",
       "precio": 250
     },
     {
       "id": 15,
       "nombre": "Red IPA",
-      "cerveceria": "BABA",
+      "descripcion": "BABA",
       "precio": 250
     },
     {
       "id": 16,
       "nombre": "American IPA",
-      "cerveceria": "BIERHAUS",
+      "descripcion": "BIERHAUS",
       "precio": 250
     }
   ],
@@ -152,71 +142,4 @@ const PRODUCTOS = {
     }
   ]  
 };
-const pedido = [];
-let salir = false;
-let opcion = 0;
-let cantidad;
-const IVA = 0.21;
-
-/*///CLASE PRODUCTOS///*/
-class Producto {
-  constructor(id, nombre, descripcion, precio, cantidad) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precio = precio;
-    this.cantidad = cantidad;
-  };
-};
-
-do {
-  let opcion = parseInt(prompt("Que desea añadir a su pedido? \n1) Bebidas" + 
-                         "\n2) Para Picar" +
-                         "\n3) Para Comer" +
-                         "\n\n4) Pedido Completo" +
-                         "\n5) Cancelar y salir"));
-
-  switch (opcion) {
-    case 1:
-      do {
-        let opcion = parseInt(prompt());
-        
-        switch (opcion) {
-          case 1:
-            
-            break;
-        
-          default:
-            break;
-        }
-      } while (!salir);
-      break;
-
-    case 2:
-      break;
-
-    case 3:
-      break;
-
-    case 4:
-      alert("Pedido realizado!" +
-            "\nSubtotal: " + "$" + pedido.getSubTotal() +
-            "\nIVA (%21): " + "$" + pedido.getIVA() +
-            "\nTotal: " + "$" + pedido.getTotal());
-      pedido.getItems().forEach((item) => {
-        console.log(item.nombre + ' $' + item.precio);
-      });
-      salir = true;
-      break;
-
-    case 5:
-      alert("Pedido cancelado");
-      salir = true;
-      break;
-
-    default:
-      alert("Ingrese una opcion valida");
-      break;
-  };
-} while (!salir);
 

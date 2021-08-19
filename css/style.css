@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   font-size: 10px;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   color: antiquewhite;
   background-color: black; }
@@ -16,7 +17,6 @@ a, li {
   align-items: center;
   justify-content: space-between;
   height: 11rem;
-  margin-bottom: 2rem;
   border-bottom: 2px solid antiquewhite; }
   .header h1 {
     text-align: center;
@@ -27,128 +27,79 @@ a, li {
     margin-right: 4rem;
     cursor: pointer; }
 
+/*GRID INDEX*/
+.main {
+  display: grid;
+  grid-template-columns: 80% auto;
+  margin: 2rem 2rem; }
+
 /*MENU*/
-.menu_container {
-  margin: 0 2rem; }
-  .menu_container .menu-comidas_container {
+.menu-item_container {
+  margin-bottom: 3rem; }
+  .menu-item_container .item-titulo {
+    margin-bottom: 1rem;
+    font-size: 2rem; }
+  .menu-item_container .item {
     display: flex;
     flex-direction: column;
-    align-items: center; }
-    .menu_container .menu-comidas_container .comidas {
+    justify-content: center;
+    width: 60%;
+    padding-left: .5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid antiquewhite; }
+    .menu-item_container .item .item-detalle {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 1rem 0; }
-      .menu_container .menu-comidas_container .comidas .comidas-img {
-        width: 20rem;
-        height: 20rem; }
-        .menu_container .menu-comidas_container .comidas .comidas-img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; }
-      .menu_container .menu-comidas_container .comidas .comida-detalle {
-        text-align: center; }
-        .menu_container .menu-comidas_container .comidas .comida-detalle p {
-          font-size: 1.4rem;
-          font-weight: bold;
-          margin: .5rem 0; }
-      .menu_container .menu-comidas_container .comidas .comida-cantidad {
-        display: flex;
-        align-items: center;
-        justify-content: center; }
-        .menu_container .menu-comidas_container .comidas .comida-cantidad input {
-          width: 10%;
-          text-align: center;
-          font-size: 2rem;
-          font-weight: 900;
-          color: antiquewhite;
-          background-color: transparent;
-          border: none; }
-        .menu_container .menu-comidas_container .comidas .comida-cantidad .agregar-btn {
-          display: block;
-          background-color: #10ad10;
-          border: none;
-          font-size: 1.4rem;
-          font-weight: bold;
-          padding: .5rem; }
+      align-items: center; }
+      .menu-item_container .item .item-detalle .detalle-precio {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-left: 1.5rem; }
+      .menu-item_container .item .item-detalle .detalle-descripcion {
+        opacity: .6;
+        line-height: 1rem; }
+    .menu-item_container .item .agregar-btn {
+      margin: .5rem 0;
+      padding: .3rem;
+      width: 6rem;
+      border: none;
+      color: black;
+      font-weight: 700;
+      background-color: antiquewhite;
+      border-radius: .5rem;
+      cursor: pointer; }
+  .menu-item_container .item-nombre {
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+    font-weight: 700; }
 
 /*PEDIDO*/
 .pedido_container {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 70%;
-  height: 100vh;
-  display: none;
-  flex-direction: column;
-  background-color: antiquewhite; }
-  .pedido_container .pedido-item_container {
+  display: flex;
+  flex-direction: column; }
+  .pedido_container .item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: transparent; }
-    .pedido_container .pedido-item_container .item {
+    justify-content: space-around;
+    margin: 2rem 0; }
+    .pedido_container .item .item-nombre {
+      font-weight: bold; }
+    .pedido_container .item .item-precio {
+      margin: .2rem 0; }
+    .pedido_container .item .eliminar-btn {
+      margin-bottom: .3rem;
+      border: none;
+      opacity: .6;
+      cursor: pointer; }
+    .pedido_container .item .eliminar-btn:hover {
+      text-decoration: underline; }
+    .pedido_container .item .item-cantidad {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin-top: 1rem;
-      background-color: transparent; }
-      .pedido_container .pedido-item_container .item .item-img {
-        width: 5rem;
-        height: 5rem;
-        margin-right: 1rem; }
-        .pedido_container .pedido-item_container .item .item-img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; }
-      .pedido_container .pedido-item_container .item .item-detalle {
-        background-color: transparent; }
-        .pedido_container .pedido-item_container .item .item-detalle p {
-          font-size: 1.4rem;
-          font-weight: bold;
-          color: black;
-          background-color: transparent; }
-        .pedido_container .pedido-item_container .item .item-detalle .eliminar-btn {
-          background-color: red;
-          border: none;
-          font-size: 1.4rem;
-          font-weight: bold;
-          margin-top: 1rem;
-          padding: .5rem; }
-      .pedido_container .pedido-item_container .item .item-cantidad {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-left: 2rem;
-        width: 3rem;
-        background-color: transparent; }
-        .pedido_container .pedido-item_container .item .item-cantidad .item-cantidad_cantidad {
-          width: 2rem;
-          text-align: center;
-          font-size: 1.4rem;
-          font-weight: 900;
-          color: black;
-          background-color: transparent;
-          border: none; }
-  .pedido_container .pedido-total_container {
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center; }
+  .pedido_container .total_container {
     display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: transparent; }
-    .pedido_container .pedido-total_container p {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 0 1rem;
-      color: black;
-      background-color: transparent; }
-  .pedido_container label {
-    background-color: transparent;
-    cursor: pointer; }
-    .pedido_container label i {
-      font-size: 3rem;
-      background-color: transparent;
-      color: black;
-      margin: 1rem 1rem; }
+    align-items: center;
+    justify-content: center; }
+    .pedido_container .total_container p {
+      font-size: 1.6rem;
+      font-weight: 700; }

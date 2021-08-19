@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   font-size: 10px;
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   color: antiquewhite;
   background-color: black;
@@ -20,7 +21,6 @@ a, li {
   align-items: center;
   justify-content: space-between;
   height: 11rem;
-  margin-bottom: 2rem;
   border-bottom: 2px solid antiquewhite;
 
   h1 {
@@ -36,174 +36,111 @@ a, li {
   }
 }
 
-/*MENU*/
-.menu_container {
-  margin: 0 2rem;
+/*GRID INDEX*/
+.main {
+  display: grid;
+  grid-template-columns: 80% auto;
+  margin: 2rem 2rem;
+}
 
-  .menu-comidas_container {
+/*MENU*/
+.menu-item_container {
+  margin-bottom: 3rem;
+
+  .item-titulo {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    width: 60%;
+    padding-left: .5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid antiquewhite;
 
-    .comidas {
+    .item-detalle {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      margin: 1rem 0;
 
-      .comidas-img {
-        width: 20rem;
-        height: 20rem;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
+      .detalle-precio {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-left: 1.5rem;
       }
 
-      .comida-detalle {
-        text-align: center;
-
-        p {
-          font-size: 1.4rem;
-          font-weight: bold;
-          margin: .5rem 0;
-        }
-      }
-
-      .comida-cantidad {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        input {
-          width: 10%;
-          text-align: center;
-          font-size: 2rem;
-          font-weight: 900;
-          color: antiquewhite;
-          background-color: transparent;
-          border: none;
-        }
-
-        .agregar-btn {
-          display: block;
-          background-color: rgb(16, 173, 16);
-          border: none;
-          font-size: 1.4rem;
-          font-weight: bold;
-          padding: .5rem;
-        }
+      .detalle-descripcion {
+        opacity: .6;
+        line-height: 1rem;
       }
     }
+
+    .agregar-btn {
+      margin: .5rem 0;
+      padding: .3rem;
+      width: 6rem;
+      border: none;
+      color: black;
+      font-weight: 700;
+      background-color: antiquewhite;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
+  }
+  
+  .item-nombre {
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+    font-weight: 700;
   }
 }
 
 /*PEDIDO*/
-.pedido_container {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 70%;
-  height: 100vh;
-  display: none;
+.pedido_container{
+  display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
 
-  .pedido-item_container {
+  .item {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: transparent;
+    justify-content: space-around;
+    margin: 2rem 0;
 
-    .item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin-top: 1rem;
-      background-color: transparent;
-
-      .item-img {
-        width: 5rem;
-        height: 5rem;
-        margin-right: 1rem;
-  
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .item-detalle {
-        background-color: transparent;
-        
-        p {
-          font-size: 1.4rem;
-          font-weight: bold;
-          color: black;
-          background-color: transparent;
-        }
-
-        .eliminar-btn {
-          background-color: red;
-          border: none;
-          font-size: 1.4rem;
-          font-weight: bold;
-          margin-top: 1rem;
-          padding: .5rem;
-        }
-      }        
-
-      .item-cantidad {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-left: 2rem;
-        width: 3rem;
-        background-color: transparent;
-
-        .item-cantidad_cantidad {
-          width: 2rem;
-          text-align: center;
-          font-size: 1.4rem;
-          font-weight: 900;
-          color: black;
-          background-color: transparent;
-          border: none;
-        }
-      }
-    }    
-  }
-
-  .pedido-total_container {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: transparent;
-
-    p {
-      font-size: 2rem;
+    .item-nombre {
       font-weight: bold;
-      margin: 0 1rem;
-      color: black;
-      background-color: transparent;
+    }
+
+    .item-precio {
+      margin: .2rem 0;
+    }
+
+    .eliminar-btn {
+      margin-bottom: .3rem;
+      border: none;
+      opacity: .6;
+      cursor: pointer;
+    }
+    .eliminar-btn:hover {
+      text-decoration: underline;
+    }
+
+    .item-cantidad {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
     }
   }
 
-  label {
-    background-color: transparent;
-    cursor: pointer;
+  .total_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    i {
-      font-size: 3rem;
-      background-color: transparent;
-      color: black;
-      margin: 1rem 1rem;
+    p {
+      font-size: 1.6rem;
+      font-weight: 700;
     }
   }
 }
