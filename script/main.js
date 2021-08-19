@@ -1,3 +1,4 @@
+// Lista JSON de productos
 const PRODUCTOS = {
   "nombre": "Bar",
   "direccion": "Calle falsa 123 - Vicente Lopez",
