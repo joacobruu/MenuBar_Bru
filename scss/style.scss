@@ -105,11 +105,16 @@ a, li {
 
   .item {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 2rem 0;
+
+    .item_detalle {
+      width: 70%;
+    }
 
     .item-nombre {
       font-weight: bold;
+      line-height: 1.5rem;
     }
 
     .item-precio {

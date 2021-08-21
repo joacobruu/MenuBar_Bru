@@ -113,13 +113,13 @@ const PRODUCTOS = {
       "id": 17,
       "nombre": "Old Fashioned",
       "descripcion": "Bourbon, azucar y Angostura: Perfume de naranja",
-      "precio": "400"
+      "precio": 400
     },
     {
       "id": 18,
       "nombre": "Negroni",
       "descripcion": "Gin, Campari y Vermouth rosso",
-      "precio": "300"
+      "precio": 300
     },
     {
       "id": 19,
@@ -151,32 +151,16 @@ const veggieContainer = document.getElementById("veggieContainer");
 const cervezasContainer = document.getElementById("cervezasContainer");
 const tragosContainer = document.getElementById("tragosContainer");
 const pedidoContainer = document.getElementById("pedidoContainer");
+const agregarHamburguesas = document.getElementsByClassName("agregar-btn_hamburguesas");
+const agregarPicada = document.getElementsByClassName("agregar-btn_picada");
+const agregarVegano = document.getElementsByClassName("agregar-btn_vegano");
+const agregarcerveza = document.getElementsByClassName("agregar-btn_cervezas");
+const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
+const totalPedido = document.getElementById("totalPedido");
+const eliminarBtn = document.getElementsByClassName("eliminar-btn");
 
-//Plantillas
-// const itemContainer = document.createElement("article");
-// itemContainer.className = "menu-item_container";
-// tituloItem.innerText = "Hamburguesas";
-// itemContainer.appendChild(tituloItem);
-
-/*
-        <div class="item">
-          <div class="item_detalle">
-            <p class="item-nombre">Hamburguesa</p>
-            <p class="item-precio">$250</p>
-            <button class="eliminar-btn">Eliminar</button>
-          </div>
-          <div class="item-cantidad">
-            <label for="">
-              <i class="fas fa-chevron-up up"></i>
-            </label>
-            <label for="">0</label>
-            <label for="">S
-              <i class="fas fa-chevron-down down"></i>
-            </label>
-          </div>
-        </div>
-*/
-
+const PEDIDO = [];
+let total = 0;
 
 class Producto {
   constructor(id, nombre, descripcion, precio, cantidad) {
@@ -188,7 +172,42 @@ class Producto {
   };
 };
 
-for(hamburguesas of PRODUCTOS.hamburguesas) {
+class Pedido {
+  static mostrarPedido(id) {
+    for (let items of PEDIDO) {
+      if (id === items.id) {
+        let item = document.createElement("div");
+        item.className = "item";
+        item.innerHTML = `<div class="item_detalle">
+                            <p class="item-nombre">${items.nombre}</p>
+                            <p class="item-precio">$${items.precio}</p>
+                            <button class="eliminar-btn">Eliminar</button>
+                          </div>
+                          <div class="item-cantidad">
+                            <label for="">
+                              <i class="fas fa-chevron-up up"></i>
+                            </label>
+                            <label for="">0</label>
+                            <label for="">
+                              <i class="fas fa-chevron-down down"></i>
+                            </label>
+                          </div>`;
+
+        return pedidoContainer.appendChild(item);
+      };
+    };
+  };
+
+  static mostrarTotal(precio){
+    total += precio;
+    totalPedido.innerText = `Total: $${total}`;
+    return totalPedido;
+  };
+};
+
+for (hamburguesas of PRODUCTOS.hamburguesas) {
+  let index = PRODUCTOS.hamburguesas.indexOf(hamburguesas);
+  let hamburguesa = new Producto(hamburguesas.id, hamburguesas.nombre, hamburguesas.descripcion, hamburguesas.precio, 1);
   let item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${hamburguesas.nombre}</p>
@@ -198,12 +217,19 @@ for(hamburguesas of PRODUCTOS.hamburguesas) {
                         </p>
                         <p id="precio" class="detalle-precio">$${hamburguesas.precio}</p>
                       </div>
-                      <button class="agregar-btn" id="agregar">Agregar</button>`;
-  
+                      <button class="agregar-btn agregar-btn_hamburguesas" id="agregar">Agregar</button>`;
+
   hamburguesasContainer.appendChild(item);
+  agregarHamburguesas[index].addEventListener("click", () => {
+    PEDIDO.push(hamburguesa);
+    Pedido.mostrarPedido(hamburguesa.id);
+    Pedido.mostrarTotal(hamburguesa.precio);
+  });
 };
 
-for(picadas of PRODUCTOS.picada) {
+for (picadas of PRODUCTOS.picada) {
+  let index = PRODUCTOS.picada.indexOf(picadas);
+  let picada = new Producto(picadas.id, picadas.nombre, picadas.descripcion, picadas.precio, 1);
   let item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${picadas.nombre}</p>
@@ -213,12 +239,19 @@ for(picadas of PRODUCTOS.picada) {
                         </p>
                         <p id="precio" class="detalle-precio">$${picadas.precio}</p>
                       </div>
-                      <button class="agregar-btn" id="agregar">Agregar</button>`;
-  
+                      <button class="agregar-btn agregar-btn_picada" id="agregar">Agregar</button>`;
+
   picadaContainer.appendChild(item);
+  agregarPicada[index].addEventListener("click", () => {
+    PEDIDO.push(picada);
+    Pedido.mostrarPedido(picada.id);
+    Pedido.mostrarTotal(picada.precio);
+  });
 };
 
-for(veggie of PRODUCTOS.vegano) {
+for (veggie of PRODUCTOS.vegano) {
+  let index = PRODUCTOS.vegano.indexOf(veggie);
+  let vegano = new Producto(veggie.id, veggie.nombre, veggie.descripcion, veggie.precio, 1);
   let item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${veggie.nombre}</p>
@@ -228,12 +261,19 @@ for(veggie of PRODUCTOS.vegano) {
                         </p>
                         <p id="precio" class="detalle-precio">$${veggie.precio}</p>
                       </div>
-                      <button class="agregar-btn" id="agregar">Agregar</button>`;
-  
+                      <button class="agregar-btn agregar-btn_vegano" id="agregar">Agregar</button>`;
+
   veggieContainer.appendChild(item);
+  agregarVegano[index].addEventListener("click", () => {
+    PEDIDO.push(vegano);
+    Pedido.mostrarPedido(vegano.id);
+    Pedido.mostrarTotal(vegano.precio);
+  });
 };
 
-for(cervezas of PRODUCTOS.cervezas) {
+for (cervezas of PRODUCTOS.cervezas) {
+  let index = PRODUCTOS.cervezas.indexOf(cervezas);
+  let cerveza = new Producto(cervezas.id, cervezas.nombre, cervezas.descripcion, cervezas.precio, 1);
   let item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${cervezas.nombre}</p>
@@ -243,12 +283,19 @@ for(cervezas of PRODUCTOS.cervezas) {
                         </p>
                         <p id="precio" class="detalle-precio">$${cervezas.precio}</p>
                       </div>
-                      <button class="agregar-btn" id="agregar">Agregar</button>`;
-  
+                      <button class="agregar-btn agregar-btn_cervezas" id="agregar">Agregar</button>`;
+
   cervezasContainer.appendChild(item);
+  agregarcerveza[index].addEventListener("click", () => {
+    PEDIDO.push(cerveza);
+    Pedido.mostrarPedido(cerveza.id);
+    Pedido.mostrarTotal(cerveza.precio);
+  });
 };
 
-for(tragos of PRODUCTOS.tragos) {
+for (tragos of PRODUCTOS.tragos) {
+  let index = PRODUCTOS.tragos.indexOf(tragos);
+  let trago = new Producto(tragos.id, tragos.nombre, tragos.descripcion, tragos.precio, 1);
   let item = document.createElement("div");
   item.className = "item";
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${tragos.nombre}</p>
@@ -258,8 +305,12 @@ for(tragos of PRODUCTOS.tragos) {
                         </p>
                         <p id="precio" class="detalle-precio">$${tragos.precio}</p>
                       </div>
-                      <button class="agregar-btn" id="agregar">Agregar</button>`;
-  
-  tragosContainer.appendChild(item);
-};
+                      <button class="agregar-btn agregar-btn_tragos" id="agregar">Agregar</button>`;
 
+  tragosContainer.appendChild(item);
+  agregarTrago[index].addEventListener("click", () => {
+    PEDIDO.push(trago);
+    Pedido.mostrarPedido(trago.id);
+    Pedido.mostrarTotal(trago.precio);
+  });
+};

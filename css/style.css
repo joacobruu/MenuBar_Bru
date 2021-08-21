@@ -79,10 +79,13 @@ a, li {
   flex-direction: column; }
   .pedido_container .item {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 2rem 0; }
+    .pedido_container .item .item_detalle {
+      width: 70%; }
     .pedido_container .item .item-nombre {
-      font-weight: bold; }
+      font-weight: bold;
+      line-height: 1.5rem; }
     .pedido_container .item .item-precio {
       margin: .2rem 0; }
     .pedido_container .item .eliminar-btn {
