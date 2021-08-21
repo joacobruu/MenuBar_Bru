@@ -64,6 +64,7 @@ a, li {
     .item-detalle {
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
       .detalle-precio {
         font-size: 1.4rem;
@@ -73,7 +74,7 @@ a, li {
 
       .detalle-descripcion {
         opacity: .6;
-        line-height: 1rem;
+        line-height: 1.5rem;
       }
     }
 

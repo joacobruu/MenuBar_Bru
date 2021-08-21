@@ -49,14 +49,15 @@ a, li {
     border-bottom: 1px solid antiquewhite; }
     .menu-item_container .item .item-detalle {
       display: flex;
-      align-items: center; }
+      align-items: center;
+      justify-content: space-between; }
       .menu-item_container .item .item-detalle .detalle-precio {
         font-size: 1.4rem;
         font-weight: 700;
         margin-left: 1.5rem; }
       .menu-item_container .item .item-detalle .detalle-descripcion {
         opacity: .6;
-        line-height: 1rem; }
+        line-height: 1.5rem; }
     .menu-item_container .item .agregar-btn {
       margin: .5rem 0;
       padding: .3rem;
