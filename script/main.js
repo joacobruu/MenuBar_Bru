@@ -142,7 +142,7 @@ const PRODUCTOS = {
   ]
 };
 
-//Capturando etiquetas
+//Capturando contenedores y botones del html
 const nombreItem = document.getElementById("nombreItem");
 const precio = document.getElementById("precio");
 const hamburguesasContainer = document.getElementById("hamburguesasContainer");
@@ -159,6 +159,7 @@ const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
 const totalPedido = document.getElementById("totalPedido");
 const eliminarBtn = document.getElementsByClassName("eliminar-btn");
 
+
 const PEDIDO = [];
 let total = 0;
 
@@ -172,7 +173,10 @@ class Producto {
   };
 };
 
+
+//Clase pedido que me ayuda a mostrar los items que se van agregando
 class Pedido {
+  //Funcion para agregar los items a la seccion de pedido
   static mostrarPedido(id) {
     for (let items of PEDIDO) {
       if (id === items.id) {
@@ -181,7 +185,7 @@ class Pedido {
         item.innerHTML = `<div class="item_detalle">
                             <p class="item-nombre">${items.nombre}</p>
                             <p class="item-precio">$${items.precio}</p>
-                            <button class="eliminar-btn">Eliminar</button>
+                            <button class="eliminar-btn" value="${items.id}">Eliminar</button>
                           </div>
                           <div class="item-cantidad">
                             <label for="">
@@ -198,18 +202,34 @@ class Pedido {
     };
   };
 
+  //Funcion para mostrar e ir sumando el total del pedido
   static mostrarTotal(precio){
     total += precio;
     totalPedido.innerText = `Total: $${total}`;
     return totalPedido;
   };
+
+  static eliminarItem(id){
+    for(let item of PEDIDO){
+      if(item.id === id){
+        let index = PEDIDO.indexOf(item);
+        PEDIDO.splice(index, 1);
+      };
+    };
+  };
 };
 
+
+//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Hamburguesas)
 for (hamburguesas of PRODUCTOS.hamburguesas) {
+  //capturo el indexOF de cada item para poder agregar un even listener unico a cada boton
   let index = PRODUCTOS.hamburguesas.indexOf(hamburguesas);
+  //creo una nueva instancia de producto con los datos del item
   let hamburguesa = new Producto(hamburguesas.id, hamburguesas.nombre, hamburguesas.descripcion, hamburguesas.precio, 1);
+  //Creo un nuevo elemento html y le asigno una clase
   let item = document.createElement("div");
   item.className = "item";
+  //preparo la plantilla para cada producto con sus datos
   item.innerHTML = `<p id="nombreItem" class="item-nombre">${hamburguesas.nombre}</p>
                       <div class="item-detalle">
                         <p class="detalle-descripcion">
@@ -219,7 +239,9 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
                       </div>
                       <button class="agregar-btn agregar-btn_hamburguesas" id="agregar">Agregar</button>`;
 
+  //Inserto el producto en el html
   hamburguesasContainer.appendChild(item);
+  //Event listener para poder agregar el producto a pedido
   agregarHamburguesas[index].addEventListener("click", () => {
     PEDIDO.push(hamburguesa);
     Pedido.mostrarPedido(hamburguesa.id);
@@ -227,6 +249,7 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
   });
 };
 
+//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Picadas)
 for (picadas of PRODUCTOS.picada) {
   let index = PRODUCTOS.picada.indexOf(picadas);
   let picada = new Producto(picadas.id, picadas.nombre, picadas.descripcion, picadas.precio, 1);
@@ -249,6 +272,7 @@ for (picadas of PRODUCTOS.picada) {
   });
 };
 
+//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Vegano)
 for (veggie of PRODUCTOS.vegano) {
   let index = PRODUCTOS.vegano.indexOf(veggie);
   let vegano = new Producto(veggie.id, veggie.nombre, veggie.descripcion, veggie.precio, 1);
@@ -271,6 +295,7 @@ for (veggie of PRODUCTOS.vegano) {
   });
 };
 
+//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Cervezas)
 for (cervezas of PRODUCTOS.cervezas) {
   let index = PRODUCTOS.cervezas.indexOf(cervezas);
   let cerveza = new Producto(cervezas.id, cervezas.nombre, cervezas.descripcion, cervezas.precio, 1);
@@ -293,6 +318,7 @@ for (cervezas of PRODUCTOS.cervezas) {
   });
 };
 
+//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Tragos)
 for (tragos of PRODUCTOS.tragos) {
   let index = PRODUCTOS.tragos.indexOf(tragos);
   let trago = new Producto(tragos.id, tragos.nombre, tragos.descripcion, tragos.precio, 1);
@@ -314,3 +340,5 @@ for (tragos of PRODUCTOS.tragos) {
     Pedido.mostrarTotal(trago.precio);
   });
 };
+
+
