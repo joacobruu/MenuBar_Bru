@@ -166,8 +166,8 @@ class Producto {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
-    this.precio = precio;
     this.cantidad = cantidad;
+    this.precio = precio;    
   };
 };
 
@@ -228,6 +228,19 @@ class Pedido {
         return pedidoContainer.appendChild(item);
     });
   };
+
+  static agregarProducto(producto){
+    if(PEDIDO.includes(producto)){
+      PEDIDO.forEach(item => {
+        if(item.id == producto.id){
+          item.cantidad++;
+        };
+      });
+    } else {
+      PEDIDO.push(producto);
+    };
+    return PEDIDO;
+  };
 };
 
 
@@ -254,7 +267,7 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
   hamburguesasContainer.appendChild(item);
   //Event listener para poder agregar el producto a pedido
   agregarHamburguesas[index].addEventListener("click", () => {
-    PEDIDO.push(hamburguesa);
+    Pedido.agregarProducto(hamburguesa);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
