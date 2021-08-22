@@ -194,6 +194,7 @@ class Pedido {
         Pedido.refreshTotal();
       };
     };
+    return PEDIDO;
   };
 
   //Funcion para agregar el event listener a cada boton de eliminar del pedido
@@ -205,7 +206,7 @@ class Pedido {
     };
   };
   
-  //Funcion para agregar los items a la seccion de pedido
+  //Funcion para mostar los items a la seccion de pedido
   static refreshPedido(){
     pedidoContainer.innerHTML = "";
     PEDIDO.forEach(items => {
@@ -220,7 +221,7 @@ class Pedido {
                             <label for="">
                               <i class="fas fa-chevron-up up"></i>
                             </label>
-                            <label class="pedidoCantidad" for="">${items.cantidad}</label>
+                            <label id="pedidoCantidad" class="pedidoCantidad" for="">${items.cantidad}</label>
                             <label for="">
                               <i class="fas fa-chevron-down down"></i>
                             </label>
@@ -229,14 +230,17 @@ class Pedido {
     });
   };
 
+  //Funcion para agregar los items a la seccion de pedido
   static agregarProducto(producto){
-    if(PEDIDO.includes(producto)){
-      PEDIDO.forEach(item => {
-        if(item.id == producto.id){
-          item.cantidad++;
-        };
-      });
-    } else {
+    let enPedido = false;
+    PEDIDO.forEach(item => {
+      if(item.id === producto.id){
+        item.cantidad++;
+        enPedido = true;
+      };
+    });
+    if(!enPedido){
+      producto.cantidad = 1;
       PEDIDO.push(producto);
     };
     return PEDIDO;
@@ -248,7 +252,6 @@ class Pedido {
 for (hamburguesas of PRODUCTOS.hamburguesas) {
   //capturo el indexOF de cada item para poder agregar un even listener unico a cada boton
   let index = PRODUCTOS.hamburguesas.indexOf(hamburguesas);
-  //creo una nueva instancia de producto con los datos del item
   let hamburguesa = new Producto(hamburguesas.id, hamburguesas.nombre, hamburguesas.descripcion, hamburguesas.precio, 1);
   //Creo un nuevo elemento html y le asigno una clase
   let item = document.createElement("div");
