@@ -158,7 +158,6 @@ const agregarcerveza = document.getElementsByClassName("agregar-btn_cervezas");
 const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
 const totalPedido = document.getElementById("totalPedido");
 const eliminarBtn = document.getElementsByClassName("eliminar-btn");
-const pedidoCantidad = document.getElementsByClassName("pedidoCantidad");
 
 const PEDIDO = [];
 
