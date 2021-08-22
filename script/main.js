@@ -159,9 +159,7 @@ const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
 const totalPedido = document.getElementById("totalPedido");
 const eliminarBtn = document.getElementsByClassName("eliminar-btn");
 
-
 const PEDIDO = [];
-let total = 0;
 
 class Producto {
   constructor(id, nombre, descripcion, precio, cantidad) {
@@ -176,11 +174,42 @@ class Producto {
 
 //Clase pedido que me ayuda a mostrar los items que se van agregando
 class Pedido {
+  //Funcion para mostrar e ir sumando el total del pedido
+  static refreshTotal(){
+    let total = 0;
+    for (let i = 0; i < PEDIDO.length; i++) {
+      total += PEDIDO[i].precio;
+    };
+    totalPedido.innerText = `Total: $${total}`;
+    return totalPedido;
+  };
+
+  //Funcion para eliminar item del pedido
+  static eliminarItem(id){
+    for(let i = 0; i < PEDIDO.length; i++){
+      if(PEDIDO[i].id  === id){
+        PEDIDO.splice(i, 1);
+        Pedido.refreshPedido();
+        Pedido.refreshBtn();
+        Pedido.refreshTotal();
+      };
+    };
+  };
+
+  //Funcion para agregar el event listener a cada boton de eliminar del pedido
+  static refreshBtn(){
+    for(let i = 0; i < eliminarBtn.length; i++){
+      eliminarBtn[i].addEventListener("click", () => {
+        Pedido.eliminarItem(parseInt(eliminarBtn[i].getAttribute("value")));
+      });
+    };
+  };
+  
   //Funcion para agregar los items a la seccion de pedido
-  static mostrarPedido(id) {
-    for (let items of PEDIDO) {
-      if (id === items.id) {
-        let item = document.createElement("div");
+  static refreshPedido(){
+    pedidoContainer.innerHTML = "";
+    PEDIDO.forEach(items => {
+      let item = document.createElement("div");
         item.className = "item";
         item.innerHTML = `<div class="item_detalle">
                             <p class="item-nombre">${items.nombre}</p>
@@ -196,26 +225,8 @@ class Pedido {
                               <i class="fas fa-chevron-down down"></i>
                             </label>
                           </div>`;
-
         return pedidoContainer.appendChild(item);
-      };
-    };
-  };
-
-  //Funcion para mostrar e ir sumando el total del pedido
-  static mostrarTotal(precio){
-    total += precio;
-    totalPedido.innerText = `Total: $${total}`;
-    return totalPedido;
-  };
-
-  static eliminarItem(id){
-    for(let item of PEDIDO){
-      if(item.id === id){
-        let index = PEDIDO.indexOf(item);
-        PEDIDO.splice(index, 1);
-      };
-    };
+    });
   };
 };
 
@@ -244,8 +255,9 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
   //Event listener para poder agregar el producto a pedido
   agregarHamburguesas[index].addEventListener("click", () => {
     PEDIDO.push(hamburguesa);
-    Pedido.mostrarPedido(hamburguesa.id);
-    Pedido.mostrarTotal(hamburguesa.precio);
+    Pedido.refreshPedido();
+    Pedido.refreshBtn();
+    Pedido.refreshTotal();
   });
 };
 
@@ -267,8 +279,9 @@ for (picadas of PRODUCTOS.picada) {
   picadaContainer.appendChild(item);
   agregarPicada[index].addEventListener("click", () => {
     PEDIDO.push(picada);
-    Pedido.mostrarPedido(picada.id);
-    Pedido.mostrarTotal(picada.precio);
+    Pedido.refreshPedido();
+    Pedido.refreshBtn();
+    Pedido.refreshTotal();
   });
 };
 
@@ -290,8 +303,9 @@ for (veggie of PRODUCTOS.vegano) {
   veggieContainer.appendChild(item);
   agregarVegano[index].addEventListener("click", () => {
     PEDIDO.push(vegano);
-    Pedido.mostrarPedido(vegano.id);
-    Pedido.mostrarTotal(vegano.precio);
+    Pedido.refreshPedido();
+    Pedido.refreshBtn();
+    Pedido.refreshTotal();
   });
 };
 
@@ -313,8 +327,9 @@ for (cervezas of PRODUCTOS.cervezas) {
   cervezasContainer.appendChild(item);
   agregarcerveza[index].addEventListener("click", () => {
     PEDIDO.push(cerveza);
-    Pedido.mostrarPedido(cerveza.id);
-    Pedido.mostrarTotal(cerveza.precio);
+    Pedido.refreshPedido();
+    Pedido.refreshBtn();
+    Pedido.refreshTotal();
   });
 };
 
@@ -336,8 +351,9 @@ for (tragos of PRODUCTOS.tragos) {
   tragosContainer.appendChild(item);
   agregarTrago[index].addEventListener("click", () => {
     PEDIDO.push(trago);
-    Pedido.mostrarPedido(trago.id);
-    Pedido.mostrarTotal(trago.precio);
+    Pedido.refreshPedido();
+    Pedido.refreshBtn();
+    Pedido.refreshTotal();
   });
 };
 
