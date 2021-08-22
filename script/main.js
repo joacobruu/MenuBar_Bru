@@ -158,6 +158,7 @@ const agregarcerveza = document.getElementsByClassName("agregar-btn_cervezas");
 const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
 const totalPedido = document.getElementById("totalPedido");
 const eliminarBtn = document.getElementsByClassName("eliminar-btn");
+const pedidoCantidad = document.getElementsByClassName("pedidoCantidad");
 
 const PEDIDO = [];
 
@@ -220,7 +221,7 @@ class Pedido {
                             <label for="">
                               <i class="fas fa-chevron-up up"></i>
                             </label>
-                            <label for="">0</label>
+                            <label class="pedidoCantidad" value="${items.id}" for="">${items.cantidad}</label>
                             <label for="">
                               <i class="fas fa-chevron-down down"></i>
                             </label>
@@ -291,7 +292,7 @@ for (picadas of PRODUCTOS.picada) {
 
   picadaContainer.appendChild(item);
   agregarPicada[index].addEventListener("click", () => {
-    PEDIDO.push(picada);
+    Pedido.agregarProducto(picada);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
@@ -315,7 +316,7 @@ for (veggie of PRODUCTOS.vegano) {
 
   veggieContainer.appendChild(item);
   agregarVegano[index].addEventListener("click", () => {
-    PEDIDO.push(vegano);
+    Pedido.agregarProducto(vegano);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
@@ -339,7 +340,7 @@ for (cervezas of PRODUCTOS.cervezas) {
 
   cervezasContainer.appendChild(item);
   agregarcerveza[index].addEventListener("click", () => {
-    PEDIDO.push(cerveza);
+    Pedido.agregarProducto(cerveza);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
@@ -363,7 +364,7 @@ for (tragos of PRODUCTOS.tragos) {
 
   tragosContainer.appendChild(item);
   agregarTrago[index].addEventListener("click", () => {
-    PEDIDO.push(trago);
+    Pedido.agregarProducto(trago);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
