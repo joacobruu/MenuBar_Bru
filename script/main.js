@@ -179,7 +179,7 @@ class Pedido {
   static refreshTotal(){
     let total = 0;
     for (let i = 0; i < PEDIDO.length; i++) {
-      total += PEDIDO[i].precio;
+      total += PEDIDO[i].precio * PEDIDO[i].cantidad;
     };
     totalPedido.innerText = `Total: $${total}`;
     return totalPedido;
@@ -221,7 +221,7 @@ class Pedido {
                             <label for="">
                               <i class="fas fa-chevron-up up"></i>
                             </label>
-                            <label class="pedidoCantidad" value="${items.id}" for="">${items.cantidad}</label>
+                            <label class="pedidoCantidad" for="">${items.cantidad}</label>
                             <label for="">
                               <i class="fas fa-chevron-down down"></i>
                             </label>
