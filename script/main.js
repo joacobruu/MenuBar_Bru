@@ -158,6 +158,8 @@ const agregarcerveza = document.getElementsByClassName("agregar-btn_cervezas");
 const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
 const totalPedido = document.getElementById("totalPedido");
 const eliminarBtn = document.getElementsByClassName("eliminar-btn");
+const aumentarCantidad = document.getElementsByClassName("aumentarCantidad");
+const disminuirCantidad = document.getElementsByClassName("disminuirCantidad");
 
 const PEDIDO = [];
 
@@ -167,15 +169,54 @@ class Producto {
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.cantidad = cantidad;
-    this.precio = precio;    
+    this.precio = precio;
   };
 };
 
 
-//Clase pedido que me ayuda a mostrar los items que se van agregando
+//Clase pedido con todas las funciones para manejar el carrito
 class Pedido {
+  //Funcion para agregar los items al pedido
+  static agregarProducto(producto) {
+    let enPedido = false;
+    PEDIDO.forEach(item => {
+      if (item.id === producto.id) {
+        item.cantidad++;
+        enPedido = true;
+      };
+    });
+    if (!enPedido) {
+      producto.cantidad = 1;
+      PEDIDO.push(producto);
+    };
+    return PEDIDO;
+  };
+
+  //Funcion para mostar los items en la seccion de pedido
+  static refreshPedido() {
+    pedidoContainer.innerHTML = "";
+    PEDIDO.forEach(items => {
+      let item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = `<div class="item_detalle">
+                            <p class="item-nombre">${items.nombre}</p>
+                            <p class="item-precio">$${items.precio}</p>
+                            <button class="eliminar-btn" value="${items.id}">Eliminar</button>
+                          </div>
+                          <div class="item-cantidad">
+                            <label class="aumentarCantidad" value="${items.id}">
+                              <i class="fas fa-chevron-up up"></i>
+                            </label>
+                            <label id="pedidoCantidad" class="pedidoCantidad">${items.cantidad}</label>
+                            <label class="disminuirCantidad" value="${items.id}">
+                              <i class="fas fa-chevron-down down"></i>
+                            </label>
+                          </div>`;
+      return pedidoContainer.appendChild(item);
+    });
+  };
   //Funcion para mostrar e ir sumando el total del pedido
-  static refreshTotal(){
+  static refreshTotal() {
     let total = 0;
     for (let i = 0; i < PEDIDO.length; i++) {
       total += PEDIDO[i].precio * PEDIDO[i].cantidad;
@@ -185,9 +226,9 @@ class Pedido {
   };
 
   //Funcion para eliminar item del pedido
-  static eliminarItem(id){
-    for(let i = 0; i < PEDIDO.length; i++){
-      if(PEDIDO[i].id  === id){
+  static eliminarItem(id) {
+    for (let i = 0; i < PEDIDO.length; i++) {
+      if (PEDIDO[i].id === id) {
         PEDIDO.splice(i, 1);
         Pedido.refreshPedido();
         Pedido.refreshBtn();
@@ -197,53 +238,52 @@ class Pedido {
     return PEDIDO;
   };
 
-  //Funcion para agregar el event listener a cada boton de eliminar del pedido
-  static refreshBtn(){
-    for(let i = 0; i < eliminarBtn.length; i++){
+  //Funcion para agregar el event listener a cada boton dentro de la seccion pedido
+  static refreshBtn() {
+    for (let i = 0; i < eliminarBtn.length; i++) {
       eliminarBtn[i].addEventListener("click", () => {
         Pedido.eliminarItem(parseInt(eliminarBtn[i].getAttribute("value")));
       });
     };
+
+    for (let i = 0; i < aumentarCantidad.length; i++) {
+      aumentarCantidad[i].addEventListener("click", () => {
+        Pedido.aumentar(parseInt(aumentarCantidad[i].getAttribute("value")));
+      });
+    };
+
+    for (let i = 0; i < disminuirCantidad.length; i++) {
+      disminuirCantidad[i].addEventListener("click", () => {
+        Pedido.disminuir(parseInt(disminuirCantidad[i].getAttribute("value")));
+      });
+    };
   };
-  
-  //Funcion para mostar los items a la seccion de pedido
-  static refreshPedido(){
-    pedidoContainer.innerHTML = "";
-    PEDIDO.forEach(items => {
-      let item = document.createElement("div");
-        item.className = "item";
-        item.innerHTML = `<div class="item_detalle">
-                            <p class="item-nombre">${items.nombre}</p>
-                            <p class="item-precio">$${items.precio}</p>
-                            <button class="eliminar-btn" value="${items.id}">Eliminar</button>
-                          </div>
-                          <div class="item-cantidad">
-                            <label for="">
-                              <i class="fas fa-chevron-up up"></i>
-                            </label>
-                            <label id="pedidoCantidad" class="pedidoCantidad" for="">${items.cantidad}</label>
-                            <label for="">
-                              <i class="fas fa-chevron-down down"></i>
-                            </label>
-                          </div>`;
-        return pedidoContainer.appendChild(item);
+
+  //Funcion para aumentar la cantidad de productos en el carrito
+  static aumentar(id) {
+    PEDIDO.forEach(item => {
+      if (item.id === id) {
+        item.cantidad++;
+        Pedido.refreshPedido();
+        Pedido.refreshBtn()
+        Pedido.refreshTotal();
+      };
     });
   };
 
-  //Funcion para agregar los items a la seccion de pedido
-  static agregarProducto(producto){
-    let enPedido = false;
+  //Funcion para disminuir la cantidad de productos en el carrito
+  static disminuir(id) {
     PEDIDO.forEach(item => {
-      if(item.id === producto.id){
-        item.cantidad++;
-        enPedido = true;
+      if (item.id === id) {
+        item.cantidad--;
+        if (item.cantidad === 0) {
+          PEDIDO.splice(PEDIDO.indexOf(item), 1);
+        };
       };
+      Pedido.refreshPedido();
+      Pedido.refreshBtn()
+      Pedido.refreshTotal();
     });
-    if(!enPedido){
-      producto.cantidad = 1;
-      PEDIDO.push(producto);
-    };
-    return PEDIDO;
   };
 };
 
