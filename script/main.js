@@ -189,7 +189,6 @@ class Pedido {
       producto.cantidad = 1;
       PEDIDO.push(producto);
     };
-    return PEDIDO;
   };
 
   //Funcion para mostar los items en la seccion de pedido
@@ -235,7 +234,6 @@ class Pedido {
         Pedido.refreshTotal();
       };
     };
-    return PEDIDO;
   };
 
   //Funcion para agregar el event listener a cada boton dentro de la seccion pedido
