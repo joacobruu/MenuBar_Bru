@@ -304,7 +304,7 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
                         </p>
                         <p id="precio" class="detalle-precio">$${hamburguesas.precio}</p>
                       </div>
-                      <button class="agregar-btn agregar-btn_hamburguesas" id="agregar">Agregar</button>`;
+                      <button class="agregar-btn agregar-btn_hamburguesas" >Agregar</button>`;
 
   //Inserto el producto en el html
   hamburguesasContainer.appendChild(item);
@@ -330,7 +330,7 @@ for (picadas of PRODUCTOS.picada) {
                         </p>
                         <p id="precio" class="detalle-precio">$${picadas.precio}</p>
                       </div>
-                      <button class="agregar-btn agregar-btn_picada" id="agregar">Agregar</button>`;
+                      <button class="agregar-btn agregar-btn_picada" >Agregar</button>`;
 
   picadaContainer.appendChild(item);
   agregarPicada[index].addEventListener("click", () => {
@@ -354,7 +354,7 @@ for (veggie of PRODUCTOS.vegano) {
                         </p>
                         <p id="precio" class="detalle-precio">$${veggie.precio}</p>
                       </div>
-                      <button class="agregar-btn agregar-btn_vegano" id="agregar">Agregar</button>`;
+                      <button class="agregar-btn agregar-btn_vegano" >Agregar</button>`;
 
   veggieContainer.appendChild(item);
   agregarVegano[index].addEventListener("click", () => {
@@ -378,7 +378,7 @@ for (cervezas of PRODUCTOS.cervezas) {
                         </p>
                         <p id="precio" class="detalle-precio">$${cervezas.precio}</p>
                       </div>
-                      <button class="agregar-btn agregar-btn_cervezas" id="agregar">Agregar</button>`;
+                      <button class="agregar-btn agregar-btn_cervezas" >Agregar</button>`;
 
   cervezasContainer.appendChild(item);
   agregarcerveza[index].addEventListener("click", () => {
@@ -402,7 +402,7 @@ for (tragos of PRODUCTOS.tragos) {
                         </p>
                         <p id="precio" class="detalle-precio">$${tragos.precio}</p>
                       </div>
-                      <button class="agregar-btn agregar-btn_tragos" id="agregar">Agregar</button>`;
+                      <button class="agregar-btn agregar-btn_tragos" >Agregar</button>`;
 
   tragosContainer.appendChild(item);
   agregarTrago[index].addEventListener("click", () => {
