@@ -264,7 +264,7 @@ for(tragos of listaProductos.tragos) {
                       <p class="item-precio">$${trago.precio}</p>
                       <button class="agregar-btn agregar-btn_trago" value="${trago.id}">AGREGAR</button>
                     </div>`;
-  cervezasContainer.appendChild(item);
+  tragosContainer.appendChild(item);
   agregarBtnTrago[index].addEventListener("click", () => {
     Pedido.agregarProducto(trago);
     Pedido.refreshPedido();
