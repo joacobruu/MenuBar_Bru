@@ -14,6 +14,20 @@ const eliminarItem = document.getElementsByClassName("eliminar-btn");
 const totalPedido = document.getElementById("carrito-total");
 const aumentarCantidad = document.getElementsByClassName("cantidad_aumentar");
 const disminuirCantidad = document.getElementsByClassName("cantidad_diminuir");
+const toggleOn = document.getElementById("toggleOn");
+const toggleOff = document.getElementById("toggleOff");
+
+toggleOn.addEventListener("click", () => {
+  let ventana = document.getElementById("ventana_carrito");
+  ventana.style.right = "0";
+});
+
+toggleOff.addEventListener("click", () => {
+  let ventana = document.getElementById("ventana_carrito");
+  ventana.style.right = "-100%";
+});
+
+
 
 const PEDIDO = [];
 

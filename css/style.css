@@ -79,7 +79,7 @@ header {
 .carrito_container {
   position: absolute;
   width: 40%;
-  right: 0;
+  right: -100%;
   top: 0;
   height: 100%;
   display: flex;
