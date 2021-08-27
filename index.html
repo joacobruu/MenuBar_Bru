@@ -9,57 +9,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet">
+<<<<<<< HEAD
   <link rel="stylesheet" href="./css/style.css">
   <script src="https://kit.fontawesome.com/5bd902e8e6.js"></script>
+=======
+  <script src="https://kit.fontawesome.com/5bd902e8e6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/storage.js"></script>
+>>>>>>> nuevaRama
   <title>Document</title>
 </head>
 
 <body>
-  <!-- Inicio Header -->
-  <header class="header">
+  <header>
     <h1>BAR</h1>
-    <label for="" id="open" onclick="togglePedidos('.pedido_container')">
-      <i class="fas fa-bars"></i>
-    </label>
+    <span>
+      <i class="fas fa-shopping-cart"></i>
+    </span>
   </header>
-  <!-- Fin Header -->
 
-  <div class="main">
-    <!-- Inicio Menu -->
-    <section class="menu_container">
-      <article id="hamburguesasContainer" class="menu-item_container">
-        <h2 class="item-titulo">Hamburguesas</h2>
-      </article>
-      <article id="picadaContainer" class="menu-item_container">
-        <h2 class="item-titulo">Para Picar</h2>
-      </article>
-      <article id="veggieContainer" class="menu-item_container">
-        <h2 class="item-titulo">Veggie</h2>
-      </article>
-      <article id="cervezasContainer" class="menu-item_container">
-        <h2 class="item-titulo">Cervezas</h2>
-      </article>
-      <article id="tragosContainer" class="menu-item_container">
-        <h2 class="item-titulo">Tragos</h2>
-      </article>
-    </section>
-    <!-- Fin Menu -->
+  <!-- Inicio Menu -->
+  <section class="menu_container">
+    <h2 class="item-titulo">Hamburguesas</h2>
+    <article id="menu_container-hamburguesas" class="menu-item_container">
+    </article>
+    <h2 class="item-titulo">Picada</h2>
+    <article id="menu_container-picada" class="menu-item_container">
+    </article>
+    <h2 class="item-titulo">Veggie</h2>
+    <article id="menu_container-veggie" class="menu-item_container">
+    </article>
+    <h2 class="item-titulo">Cervezas</h2>
+    <article id="menu_container-cervezas" class="menu-item_container">
+    </article>
+    <h2 class="item-titulo">Tragos</h2>
+    <article id="menu_container-tragos" class="menu-item_container">
+    </article>
+  </section>
+  <!-- Fin menu -->
 
-    <!-- Inicio Pedido -->
-    <section class="pedido_container">
-      <!-- Inicio items pedido -->
-      <article id="pedidoContainer" class="items_container">
-      </article>
-      <!-- Fin items pedido -->
+  <!-- Inicio seccion carrito -->
+  <section class="carrito_container">
+    <span class="carrito-titulo">
+      <i class="fas fa-times"></i>
+    </span>
 
-      <!-- icinio total pedido -->
-      <article class="total_container">
-        <p id="totalPedido">Total: $0</p>
-      </article>
-      <!-- fin total pedido -->
-    </section>
-    <!-- Fin Pedido -->
-  </div>
+    <article id="carrito_container" class="carrito-item_container">
+    </article>    
+
+    <article class="carrito_total">
+      <p id="carrito-total" class="total-total">TOTAL: $0</p>
+      <button>COMPRAR</button>
+    </article>
+  </section>
+  <!-- Fin seccion carrito -->
 
   <script src="script/main.js"></script>
 </body>

@@ -1,182 +1,35 @@
-// Lista JSON de productos
-const PRODUCTOS = {
-  "hamburguesas": [
-    {
-      "id": 1,
-      "nombre": "Clasica",
-      "descripcion": "Medallones de 120gr, queso danbo, lechuga, tomate y cebolla morada",
-      "precio": 520
-    },
-    {
-      "id": 2,
-      "nombre": "Ring Burger",
-      "descripcion": "Medallones de 120gr, doble cheddar, panceta y aros de cebolla",
-      "precio": 630
-    },
-    {
-      "id": 3,
-      "nombre": "Americana",
-      "descripcion": "Medallones de 120gr, doble cheddar, panceta, huevo y salsa barbacoa",
-      "precio": 630
-    },
-    {
-      "id": 4,
-      "nombre": "Chicken Crispy",
-      "descripcion": "Pollo crispy, queso danbo, palta, panceta y cebolla morada",
-      "precio": 520
-    }
-  ],
-
-  "picada": [
-    {
-      "id": 5,
-      "nombre": "Papas Fritas del Chef",
-      "descripcion": "Cheddar, panceta y Verdeo",
-      "precio": 580
-    },
-    {
-      "id": 6,
-      "nombre": "Bastones de Muzzarella",
-      "descripcion": "Acompañados con una salsa romesco casera",
-      "precio": 590
-    },
-    {
-      "id": 7,
-      "nombre": "Chicken Fingers",
-      "descripcion": "Rebosados con sesamo negro y blanco, acompañados con un dip de mostaza y miel",
-      "precio": 500
-    }
-  ],
-
-  "vegano": [
-    {
-      "id": 8,
-      "nombre": "hamburguesa de Falafel",
-      "descripcion": "Hamburguesa de falafel, queso danbo, rucula y tomates cherry",
-      "precio": 520
-    },
-    {
-      "id": 9,
-      "nombre": "Hamburguesa de Lentejas",
-      "descripcion": "Hamburguesa de lentejas, queso danbo, rucula y tomates cherry",
-      "precio": 630
-    },
-    {
-      "id": 10,
-      "nombre": "Bombas de Falafel",
-      "descripcion": "Acompañadas con un dip de alioli",
-      "precio": 500
-    }
-  ],
-
-  "cervezas": [
-    {
-      "id": 11,
-      "nombre": "Blonde Ale",
-      "descripcion": "BABA",
-      "precio": 250
-    },
-    {
-      "id": 12,
-      "nombre": "Honey",
-      "descripcion": "BABA",
-      "precio": 250
-    },
-    {
-      "id": 13,
-      "nombre": "Scotch",
-      "descripcion": "BIERHAUS",
-      "precio": 250
-    },
-    {
-      "id": 14,
-      "nombre": "APA",
-      "descripcion": "MINGA",
-      "precio": 250
-    },
-    {
-      "id": 15,
-      "nombre": "Red IPA",
-      "descripcion": "BABA",
-      "precio": 250
-    },
-    {
-      "id": 16,
-      "nombre": "American IPA",
-      "descripcion": "BIERHAUS",
-      "precio": 250
-    }
-  ],
-
-  "tragos": [
-    {
-      "id": 17,
-      "nombre": "Old Fashioned",
-      "descripcion": "Bourbon, azucar y Angostura: Perfume de naranja",
-      "precio": 400
-    },
-    {
-      "id": 18,
-      "nombre": "Negroni",
-      "descripcion": "Gin, Campari y Vermouth rosso",
-      "precio": 300
-    },
-    {
-      "id": 19,
-      "nombre": "Mojito Cubano",
-      "descripcion": "Ron, azucar, jugo de limon, menta y Angostura",
-      "precio": 350
-    },
-    {
-      "id": 20,
-      "nombre": "Fernet Branca",
-      "descripcion": "Con Coca-Cola",
-      "precio": 300
-    },
-    {
-      "id": 21,
-      "nombre": "Cuba Libre",
-      "descripcion": "Ron con Coca-Cola y limon",
-      "precio": 300
-    }
-  ]
-};
-
-//Capturando contenedores y botones del html
-const nombreItem = document.getElementById("nombreItem");
-const precio = document.getElementById("precio");
-const hamburguesasContainer = document.getElementById("hamburguesasContainer");
-const picadaContainer = document.getElementById("picadaContainer");
-const veggieContainer = document.getElementById("veggieContainer");
-const cervezasContainer = document.getElementById("cervezasContainer");
-const tragosContainer = document.getElementById("tragosContainer");
-const pedidoContainer = document.getElementById("pedidoContainer");
-const agregarHamburguesas = document.getElementsByClassName("agregar-btn_hamburguesas");
-const agregarPicada = document.getElementsByClassName("agregar-btn_picada");
-const agregarVegano = document.getElementsByClassName("agregar-btn_vegano");
-const agregarcerveza = document.getElementsByClassName("agregar-btn_cervezas");
-const agregarTrago = document.getElementsByClassName("agregar-btn_tragos");
-const totalPedido = document.getElementById("totalPedido");
-const eliminarBtn = document.getElementsByClassName("eliminar-btn");
-const aumentarCantidad = document.getElementsByClassName("aumentarCantidad");
-const disminuirCantidad = document.getElementsByClassName("disminuirCantidad");
+const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
+const hamburguesasContainer = document.getElementById("menu_container-hamburguesas");
+const picadasContainer = document.getElementById("menu_container-picada");
+const veggieContainer = document.getElementById("menu_container-veggie");
+const cervezasContainer = document.getElementById("menu_container-cervezas");
+const tragosContainer = document.getElementById("menu_container-tragos");
+const agregarBtnHambuguesas = document.getElementsByClassName("agregar-btn_hamburguesas");
+const agregarBtnPicadas = document.getElementsByClassName("agregar-btn_picadas");
+const agregarBtnVeggie = document.getElementsByClassName("agregar-btn_veggie");
+const agregarBtnCervezas = document.getElementsByClassName("agregar-btn_cerveza");
+const agregarBtnTrago = document.getElementsByClassName("agregar-btn_trago");
+const carritoContainer = document.getElementById("carrito_container");
+const eliminarItem = document.getElementsByClassName("eliminar-btn");
+const totalPedido = document.getElementById("carrito-total");
+const aumentarCantidad = document.getElementsByClassName("cantidad_aumentar");
+const disminuirCantidad = document.getElementsByClassName("cantidad_diminuir");
 
 const PEDIDO = [];
 
 class Producto {
-  constructor(id, nombre, descripcion, precio, cantidad) {
+  constructor(id, nombre, descripcion, precio, cantidad, img) {
     this.id = id;
     this.nombre = nombre;
     this.descripcion = descripcion;
     this.cantidad = cantidad;
     this.precio = precio;
+    this.img = img;
   };
 };
 
-
-//Clase pedido con todas las funciones para manejar el carrito
 class Pedido {
-  //Funcion para agregar los items al pedido
+
   static agregarProducto(producto) {
     let enPedido = false;
     PEDIDO.forEach(item => {
@@ -191,40 +44,38 @@ class Pedido {
     };
   };
 
-  //Funcion para mostar los items en la seccion de pedido
   static refreshPedido() {
-    pedidoContainer.innerHTML = "";
-    PEDIDO.forEach(items => {
+    carritoContainer.innerHTML = "";
+    PEDIDO.forEach(producto => {
       let item = document.createElement("div");
-      item.className = "item";
-      item.innerHTML = `<div class="item_detalle">
-                            <p class="item-nombre">${items.nombre}</p>
-                            <p class="item-precio">$${items.precio}</p>
-                            <button class="eliminar-btn" value="${items.id}">Eliminar</button>
-                          </div>
-                          <div class="item-cantidad">
-                            <label class="aumentarCantidad" value="${items.id}">
-                              <i class="fas fa-chevron-up up"></i>
-                            </label>
-                            <label id="pedidoCantidad" class="pedidoCantidad">${items.cantidad}</label>
-                            <label class="disminuirCantidad" value="${items.id}">
-                              <i class="fas fa-chevron-down down"></i>
-                            </label>
-                          </div>`;
-      return pedidoContainer.appendChild(item);
+      item.className = "carrito-item";
+      item.innerHTML = `<div class="carrito-item_detalles">
+                          <p class="carrito-item_nombre">${producto.nombre}</p>
+                          <p class="carrito-item_precio">$${producto.precio}</p>
+                          <button class="eliminar-btn" value="${producto.id}">Eliminar</button>
+                        </div>
+                        <div class="carrito_cantidad">
+                          <label class="cantidad_aumentar" value="${producto.id}">
+                            <i class="fas fa-chevron-up"></i>
+                          </label>
+                          <label class="cantidad">${producto.cantidad}</label>
+                          <label class="cantidad_diminuir" value="${producto.id}">
+                            <i class="fas fa-chevron-down"></i>
+                          </label>
+                        </div>`;
+      return carritoContainer.appendChild(item);
     });
   };
-  //Funcion para mostrar e ir sumando el total del pedido
+
   static refreshTotal() {
     let total = 0;
     for (let i = 0; i < PEDIDO.length; i++) {
       total += PEDIDO[i].precio * PEDIDO[i].cantidad;
     };
-    totalPedido.innerText = `Total: $${total}`;
+    totalPedido.innerText = `TOTAL: $${total}`;
     return totalPedido;
   };
 
-  //Funcion para eliminar item del pedido
   static eliminarItem(id) {
     for (let i = 0; i < PEDIDO.length; i++) {
       if (PEDIDO[i].id === id) {
@@ -236,11 +87,10 @@ class Pedido {
     };
   };
 
-  //Funcion para agregar el event listener a cada boton dentro de la seccion pedido
   static refreshBtn() {
-    for (let i = 0; i < eliminarBtn.length; i++) {
-      eliminarBtn[i].addEventListener("click", () => {
-        Pedido.eliminarItem(parseInt(eliminarBtn[i].getAttribute("value")));
+    for (let i = 0; i < eliminarItem.length; i++) {
+      eliminarItem[i].addEventListener("click", () => {
+        Pedido.eliminarItem(parseInt(eliminarItem[i].getAttribute("value")));
       });
     };
 
@@ -257,7 +107,6 @@ class Pedido {
     };
   };
 
-  //Funcion para aumentar la cantidad de productos en el carrito
   static aumentar(id) {
     PEDIDO.forEach(item => {
       if (item.id === id) {
@@ -269,7 +118,6 @@ class Pedido {
     });
   };
 
-  //Funcion para disminuir la cantidad de productos en el carrito
   static disminuir(id) {
     PEDIDO.forEach(item => {
       if (item.id === id) {
@@ -283,31 +131,29 @@ class Pedido {
       Pedido.refreshTotal();
     });
   };
-};
+}
 
-
-//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Hamburguesas)
-for (hamburguesas of PRODUCTOS.hamburguesas) {
-  //capturo el indexOF de cada item para poder agregar un even listener unico a cada boton
-  let index = PRODUCTOS.hamburguesas.indexOf(hamburguesas);
-  let hamburguesa = new Producto(hamburguesas.id, hamburguesas.nombre, hamburguesas.descripcion, hamburguesas.precio, 1);
-  //Creo un nuevo elemento html y le asigno una clase
+for(hamburguesas of listaProductos.hamburguesas) {
+  let index = listaProductos.hamburguesas.indexOf(hamburguesas);
+  let hamburguesa = new Producto(hamburguesas.id, 
+                                 hamburguesas.nombre, 
+                                 hamburguesas.descripcion, 
+                                 hamburguesas.precio, 
+                                 hamburguesas.cantidad, 
+                                 hamburguesas.img);
   let item = document.createElement("div");
-  item.className = "item";
-  //preparo la plantilla para cada producto con sus datos
-  item.innerHTML = `<p id="nombreItem" class="item-nombre">${hamburguesas.nombre}</p>
-                      <div class="item-detalle">
-                        <p class="detalle-descripcion">
-                          ${hamburguesas.descripcion}
-                        </p>
-                        <p id="precio" class="detalle-precio">$${hamburguesas.precio}</p>
-                      </div>
-                      <button class="agregar-btn agregar-btn_hamburguesas" >Agregar</button>`;
-
-  //Inserto el producto en el html
+  item.className = "item_container";
+  item.innerHTML = `<div class="item-img">
+                      <img src="${hamburguesa.img}" alt="${hamburguesa.nombre}" />
+                    </div>
+                    <div class="item-detalles">
+                      <h4 class="item-nombre">${hamburguesa.nombre}</h4>
+                      <p class="item-descripcion">${hamburguesa.descripcion}</p>
+                      <p class="item-precio">$${hamburguesa.precio}</p>
+                      <button class="agregar-btn agregar-btn_hamburguesas" value="${hamburguesa.id}">AGREGAR</button>
+                    </div>`;
   hamburguesasContainer.appendChild(item);
-  //Event listener para poder agregar el producto a pedido
-  agregarHamburguesas[index].addEventListener("click", () => {
+  agregarBtnHambuguesas[index].addEventListener("click", () => {
     Pedido.agregarProducto(hamburguesa);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
@@ -315,23 +161,27 @@ for (hamburguesas of PRODUCTOS.hamburguesas) {
   });
 };
 
-//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Picadas)
-for (picadas of PRODUCTOS.picada) {
-  let index = PRODUCTOS.picada.indexOf(picadas);
-  let picada = new Producto(picadas.id, picadas.nombre, picadas.descripcion, picadas.precio, 1);
+for(picadas of listaProductos.picada) {
+  let index = listaProductos.picada.indexOf(picadas);
+  let picada = new Producto(picadas.id, 
+                                 picadas.nombre, 
+                                 picadas.descripcion, 
+                                 picadas.precio, 
+                                 picadas.cantidad, 
+                                 picadas.img);
   let item = document.createElement("div");
-  item.className = "item";
-  item.innerHTML = `<p id="nombreItem" class="item-nombre">${picadas.nombre}</p>
-                      <div class="item-detalle">
-                        <p class="detalle-descripcion">
-                          ${picadas.descripcion}
-                        </p>
-                        <p id="precio" class="detalle-precio">$${picadas.precio}</p>
-                      </div>
-                      <button class="agregar-btn agregar-btn_picada" >Agregar</button>`;
-
-  picadaContainer.appendChild(item);
-  agregarPicada[index].addEventListener("click", () => {
+  item.className = "item_container";
+  item.innerHTML = `<div class="item-img">
+                      <img src="${picada.img}" alt="${picada.nombre}" />
+                    </div>
+                    <div class="item-detalles">
+                      <h4 class="item-nombre">${picada.nombre}</h4>
+                      <p class="item-descripcion">${picada.descripcion}</p>
+                      <p class="item-precio">$${picada.precio}</p>
+                      <button class="agregar-btn agregar-btn_picadas" value="${picada.id}">AGREGAR</button>
+                    </div>`;
+  picadasContainer.appendChild(item);
+  agregarBtnPicadas[index].addEventListener("click", () => {
     Pedido.agregarProducto(picada);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
@@ -339,23 +189,27 @@ for (picadas of PRODUCTOS.picada) {
   });
 };
 
-//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Vegano)
-for (veggie of PRODUCTOS.vegano) {
-  let index = PRODUCTOS.vegano.indexOf(veggie);
-  let vegano = new Producto(veggie.id, veggie.nombre, veggie.descripcion, veggie.precio, 1);
+for(veganos of listaProductos.vegano) {
+  let index = listaProductos.vegano.indexOf(veganos);
+  let vegano = new Producto(veganos.id, 
+                                 veganos.nombre, 
+                                 veganos.descripcion, 
+                                 veganos.precio, 
+                                 veganos.cantidad, 
+                                 veganos.img);
   let item = document.createElement("div");
-  item.className = "item";
-  item.innerHTML = `<p id="nombreItem" class="item-nombre">${veggie.nombre}</p>
-                      <div class="item-detalle">
-                        <p class="detalle-descripcion">
-                          ${veggie.descripcion}
-                        </p>
-                        <p id="precio" class="detalle-precio">$${veggie.precio}</p>
-                      </div>
-                      <button class="agregar-btn agregar-btn_vegano" >Agregar</button>`;
-
+  item.className = "item_container";
+  item.innerHTML = `<div class="item-img">
+                      <img src="${vegano.img}" alt="${vegano.nombre}" />
+                    </div>
+                    <div class="item-detalles">
+                      <h4 class="item-nombre">${vegano.nombre}</h4>
+                      <p class="item-descripcion">${vegano.descripcion}</p>
+                      <p class="item-precio">$${vegano.precio}</p>
+                      <button class="agregar-btn agregar-btn_veggie" value="${vegano.id}">AGREGAR</button>
+                    </div>`;
   veggieContainer.appendChild(item);
-  agregarVegano[index].addEventListener("click", () => {
+  agregarBtnVeggie[index].addEventListener("click", () => {
     Pedido.agregarProducto(vegano);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
@@ -363,23 +217,27 @@ for (veggie of PRODUCTOS.vegano) {
   });
 };
 
-//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Cervezas)
-for (cervezas of PRODUCTOS.cervezas) {
-  let index = PRODUCTOS.cervezas.indexOf(cervezas);
-  let cerveza = new Producto(cervezas.id, cervezas.nombre, cervezas.descripcion, cervezas.precio, 1);
+for(cervezas of listaProductos.cervezas) {
+  let index = listaProductos.cervezas.indexOf(cervezas);
+  let cerveza = new Producto(cervezas.id, 
+                                 cervezas.nombre, 
+                                 cervezas.descripcion, 
+                                 cervezas.precio, 
+                                 cervezas.cantidad, 
+                                 cervezas.img);
   let item = document.createElement("div");
-  item.className = "item";
-  item.innerHTML = `<p id="nombreItem" class="item-nombre">${cervezas.nombre}</p>
-                      <div class="item-detalle">
-                        <p class="detalle-descripcion">
-                          ${cervezas.descripcion}
-                        </p>
-                        <p id="precio" class="detalle-precio">$${cervezas.precio}</p>
-                      </div>
-                      <button class="agregar-btn agregar-btn_cervezas" >Agregar</button>`;
-
+  item.className = "item_container";
+  item.innerHTML = `<div class="item-img">
+                      <img src="${cerveza.img}" alt="${cerveza.nombre}" />
+                    </div>
+                    <div class="item-detalles">
+                      <h4 class="item-nombre">${cerveza.nombre}</h4>
+                      <p class="item-descripcion">${cerveza.descripcion}</p>
+                      <p class="item-precio">$${cerveza.precio}</p>
+                      <button class="agregar-btn agregar-btn_cerveza" value="${cerveza.id}">AGREGAR</button>
+                    </div>`;
   cervezasContainer.appendChild(item);
-  agregarcerveza[index].addEventListener("click", () => {
+  agregarBtnCervezas[index].addEventListener("click", () => {
     Pedido.agregarProducto(cerveza);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
@@ -387,28 +245,30 @@ for (cervezas of PRODUCTOS.cervezas) {
   });
 };
 
-//Ciclo para mostrar los items en el HTML, estos items son llamados desde el JSON (Tragos)
-for (tragos of PRODUCTOS.tragos) {
-  let index = PRODUCTOS.tragos.indexOf(tragos);
-  let trago = new Producto(tragos.id, tragos.nombre, tragos.descripcion, tragos.precio, 1);
+for(tragos of listaProductos.tragos) {
+  let index = listaProductos.tragos.indexOf(tragos);
+  let trago = new Producto(tragos.id, 
+                                 tragos.nombre, 
+                                 tragos.descripcion, 
+                                 tragos.precio, 
+                                 tragos.cantidad, 
+                                 tragos.img);
   let item = document.createElement("div");
-  item.className = "item";
-  item.innerHTML = `<p id="nombreItem" class="item-nombre">${tragos.nombre}</p>
-                      <div class="item-detalle">
-                        <p class="detalle-descripcion">
-                          ${tragos.descripcion}
-                        </p>
-                        <p id="precio" class="detalle-precio">$${tragos.precio}</p>
-                      </div>
-                      <button class="agregar-btn agregar-btn_tragos" >Agregar</button>`;
-
-  tragosContainer.appendChild(item);
-  agregarTrago[index].addEventListener("click", () => {
+  item.className = "item_container";
+  item.innerHTML = `<div class="item-img">
+                      <img src="${trago.img}" alt="${trago.nombre}" />
+                    </div>
+                    <div class="item-detalles">
+                      <h4 class="item-nombre">${trago.nombre}</h4>
+                      <p class="item-descripcion">${trago.descripcion}</p>
+                      <p class="item-precio">$${trago.precio}</p>
+                      <button class="agregar-btn agregar-btn_trago" value="${trago.id}">AGREGAR</button>
+                    </div>`;
+  cervezasContainer.appendChild(item);
+  agregarBtnTrago[index].addEventListener("click", () => {
     Pedido.agregarProducto(trago);
     Pedido.refreshPedido();
     Pedido.refreshBtn();
     Pedido.refreshTotal();
   });
 };
-
-
