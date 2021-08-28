@@ -1,4 +1,7 @@
+//Guardo los productos en LocalStorage
 const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
+
+//Capturo los elementos del html
 const hamburguesasContainer = document.getElementById("menu_container-hamburguesas");
 const picadasContainer = document.getElementById("menu_container-picada");
 const veggieContainer = document.getElementById("menu_container-veggie");
@@ -16,7 +19,9 @@ const aumentarCantidad = document.getElementsByClassName("cantidad_aumentar");
 const disminuirCantidad = document.getElementsByClassName("cantidad_diminuir");
 const toggleOn = document.getElementById("toggleOn");
 const toggleOff = document.getElementById("toggleOff");
+const comprarBtn = document.getElementById("comprarBtn");
 
+//Evento de click para abrir y cerrar el carrito
 toggleOn.addEventListener("click", () => {
   let ventana = document.getElementById("ventana_carrito");
   ventana.style.right = "0";
@@ -27,10 +32,26 @@ toggleOff.addEventListener("click", () => {
   ventana.style.right = "-100%";
 });
 
+//Evento de click para terminar el pedido
+comprarBtn.addEventListener("click", () => {
+  let mensaje = "Pedido realizado";
+  let pedido = "";
+  let total = 0;
+  PEDIDO.forEach(item => {
+    pedido = pedido + "\n" + item.cantidad + "x " + item.nombre + " $" + item.precio*item.cantidad;
+    total += item.precio*item.cantidad;
+  });
+  mensaje = mensaje + pedido + "\n\nTotal: $" + total;
+  PEDIDO.length = 0;
+  Pedido.refreshPedido();
+  Pedido.refreshTotal();
+  alert(mensaje);
+});
 
-
+//Array vacio para guardar el pedido
 const PEDIDO = [];
 
+//Clase de producto
 class Producto {
   constructor(id, nombre, descripcion, precio, cantidad, img) {
     this.id = id;
@@ -42,8 +63,11 @@ class Producto {
   };
 };
 
+
+//Clase pedido que me ayuda a manejar los eventos de la seccion pedido y su logica
 class Pedido {
 
+  //Metodo para agregar producto al array PEDIDO
   static agregarProducto(producto) {
     let enPedido = false;
     PEDIDO.forEach(item => {
@@ -58,6 +82,7 @@ class Pedido {
     };
   };
 
+  //Metodo para agregar al DOM el producto en la seccion de carrito
   static refreshPedido() {
     carritoContainer.innerHTML = "";
     PEDIDO.forEach(producto => {
@@ -101,6 +126,7 @@ class Pedido {
     };
   };
 
+  //Capturo los botones dentro de la seccion carrito y les agrego su evento
   static refreshBtn() {
     for (let i = 0; i < eliminarItem.length; i++) {
       eliminarItem[i].addEventListener("click", () => {
@@ -147,7 +173,9 @@ class Pedido {
   };
 }
 
+//Agrego al DOM cada producto de la lista
 for(hamburguesas of listaProductos.hamburguesas) {
+  //Capturo el index para setear cada boton de agregar al producto correcto
   let index = listaProductos.hamburguesas.indexOf(hamburguesas);
   let hamburguesa = new Producto(hamburguesas.id, 
                                  hamburguesas.nombre, 
@@ -155,6 +183,8 @@ for(hamburguesas of listaProductos.hamburguesas) {
                                  hamburguesas.precio, 
                                  hamburguesas.cantidad, 
                                  hamburguesas.img);
+
+  //Creo la plantilla para agregar al menu
   let item = document.createElement("div");
   item.className = "item_container";
   item.innerHTML = `<div class="item-img">
@@ -166,7 +196,10 @@ for(hamburguesas of listaProductos.hamburguesas) {
                       <p class="item-precio">$${hamburguesa.precio}</p>
                       <button class="agregar-btn agregar-btn_hamburguesas" value="${hamburguesa.id}">AGREGAR</button>
                     </div>`;
+  
+  //Agrego el producto al DOM
   hamburguesasContainer.appendChild(item);
+  //Agrego el evento a cada boton de agregar pada agregar el producto al carrito
   agregarBtnHambuguesas[index].addEventListener("click", () => {
     Pedido.agregarProducto(hamburguesa);
     Pedido.refreshPedido();
@@ -178,11 +211,11 @@ for(hamburguesas of listaProductos.hamburguesas) {
 for(picadas of listaProductos.picada) {
   let index = listaProductos.picada.indexOf(picadas);
   let picada = new Producto(picadas.id, 
-                                 picadas.nombre, 
-                                 picadas.descripcion, 
-                                 picadas.precio, 
-                                 picadas.cantidad, 
-                                 picadas.img);
+                            picadas.nombre, 
+                            picadas.descripcion, 
+                            picadas.precio, 
+                            picadas.cantidad, 
+                            picadas.img);
   let item = document.createElement("div");
   item.className = "item_container";
   item.innerHTML = `<div class="item-img">
@@ -206,11 +239,11 @@ for(picadas of listaProductos.picada) {
 for(veganos of listaProductos.vegano) {
   let index = listaProductos.vegano.indexOf(veganos);
   let vegano = new Producto(veganos.id, 
-                                 veganos.nombre, 
-                                 veganos.descripcion, 
-                                 veganos.precio, 
-                                 veganos.cantidad, 
-                                 veganos.img);
+                            veganos.nombre, 
+                            veganos.descripcion, 
+                            veganos.precio, 
+                            veganos.cantidad, 
+                            veganos.img);
   let item = document.createElement("div");
   item.className = "item_container";
   item.innerHTML = `<div class="item-img">
@@ -234,11 +267,11 @@ for(veganos of listaProductos.vegano) {
 for(cervezas of listaProductos.cervezas) {
   let index = listaProductos.cervezas.indexOf(cervezas);
   let cerveza = new Producto(cervezas.id, 
-                                 cervezas.nombre, 
-                                 cervezas.descripcion, 
-                                 cervezas.precio, 
-                                 cervezas.cantidad, 
-                                 cervezas.img);
+                             cervezas.nombre, 
+                             cervezas.descripcion, 
+                             cervezas.precio, 
+                             cervezas.cantidad, 
+                             cervezas.img);
   let item = document.createElement("div");
   item.className = "item_container";
   item.innerHTML = `<div class="item-img">
@@ -262,11 +295,11 @@ for(cervezas of listaProductos.cervezas) {
 for(tragos of listaProductos.tragos) {
   let index = listaProductos.tragos.indexOf(tragos);
   let trago = new Producto(tragos.id, 
-                                 tragos.nombre, 
-                                 tragos.descripcion, 
-                                 tragos.precio, 
-                                 tragos.cantidad, 
-                                 tragos.img);
+                           tragos.nombre, 
+                           tragos.descripcion, 
+                           tragos.precio, 
+                           tragos.cantidad, 
+                           tragos.img);
   let item = document.createElement("div");
   item.className = "item_container";
   item.innerHTML = `<div class="item-img">

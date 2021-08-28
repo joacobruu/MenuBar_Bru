@@ -149,7 +149,7 @@ const PRODUCTOS = {
     {
       "id": 20,
       "nombre": "Fernet Branca",
-      "descripcion": "Con Coca-Cola",
+      "descripcion": "Fernet Branca con Coca-Cola",
       "img": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
       "precio": 300
     },
