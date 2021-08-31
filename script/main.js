@@ -1,4 +1,4 @@
-//Guardo los productos en LocalStorage
+//Obtengo los productos de LocalStorage
 const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
 
 //Capturo los elementos del html
@@ -86,23 +86,22 @@ class Pedido {
   static refreshPedido() {
     carritoContainer.innerHTML = "";
     PEDIDO.forEach(producto => {
-      let item = document.createElement("div");
-      item.className = "carrito-item";
-      item.innerHTML = `<div class="carrito-item_detalles">
-                          <p class="carrito-item_nombre">${producto.nombre}</p>
-                          <p class="carrito-item_precio">$${producto.precio}</p>
-                          <button class="eliminar-btn" value="${producto.id}">Eliminar</button>
-                        </div>
-                        <div class="carrito_cantidad">
-                          <label class="cantidad_aumentar" value="${producto.id}">
-                            <i class="fas fa-chevron-up"></i>
-                          </label>
-                          <label class="cantidad">${producto.cantidad}</label>
-                          <label class="cantidad_diminuir" value="${producto.id}">
-                            <i class="fas fa-chevron-down"></i>
-                          </label>
-                        </div>`;
-      return carritoContainer.appendChild(item);
+      return $(carritoContainer).append(`<div class="carrito-item">
+                                          <div class="carrito-item_detalles">
+                                            <p class="carrito-item_nombre">${producto.nombre}</p>
+                                            <p class="carrito-item_precio">$${producto.precio}</p>
+                                            <button class="eliminar-btn" value="${producto.id}">Eliminar</button>
+                                          </div>
+                                          <div class="carrito_cantidad">
+                                            <label class="cantidad_aumentar" value="${producto.id}">
+                                              <i class="fas fa-chevron-up"></i>
+                                            </label>
+                                            <label class="cantidad">${producto.cantidad}</label>
+                                            <label class="cantidad_diminuir" value="${producto.id}">
+                                              <i class="fas fa-chevron-down"></i>
+                                            </label>
+                                          </div>
+                                        </div>`);
     });
   };
 
@@ -184,21 +183,19 @@ for(hamburguesas of listaProductos.hamburguesas) {
                                  hamburguesas.cantidad, 
                                  hamburguesas.img);
 
-  //Creo la plantilla para agregar al menu
-  let item = document.createElement("div");
-  item.className = "item_container";
-  item.innerHTML = `<div class="item-img">
-                      <img src="${hamburguesa.img}" alt="${hamburguesa.nombre}" />
-                    </div>
-                    <div class="item-detalles">
-                      <h4 class="item-nombre">${hamburguesa.nombre}</h4>
-                      <p class="item-descripcion">${hamburguesa.descripcion}</p>
-                      <p class="item-precio">$${hamburguesa.precio}</p>
-                      <button class="agregar-btn agregar-btn_hamburguesas" value="${hamburguesa.id}">AGREGAR</button>
-                    </div>`;
-  
-  //Agrego el producto al DOM
-  hamburguesasContainer.appendChild(item);
+  //Agrego al DOM la plantilla de cada item con JQuery
+  $(hamburguesasContainer).append(`<div class="item_container">
+                                    <div class="item-img">
+                                      <img src="${hamburguesa.img}" alt="${hamburguesa.nombre}" />
+                                    </div>
+                                    <div class="item-detalles">
+                                      <h4 class="item-nombre">${hamburguesa.nombre}</h4>
+                                      <p class="item-descripcion">${hamburguesa.descripcion}</p>
+                                      <p class="item-precio">$${hamburguesa.precio}</p>
+                                      <button class="agregar-btn agregar-btn_hamburguesas" value="${hamburguesa.id}">AGREGAR</button>
+                                    </div>
+                                  </div>`);
+
   //Agrego el evento a cada boton de agregar pada agregar el producto al carrito
   agregarBtnHambuguesas[index].addEventListener("click", () => {
     Pedido.agregarProducto(hamburguesa);
@@ -216,18 +213,19 @@ for(picadas of listaProductos.picada) {
                             picadas.precio, 
                             picadas.cantidad, 
                             picadas.img);
-  let item = document.createElement("div");
-  item.className = "item_container";
-  item.innerHTML = `<div class="item-img">
-                      <img src="${picada.img}" alt="${picada.nombre}" />
-                    </div>
-                    <div class="item-detalles">
-                      <h4 class="item-nombre">${picada.nombre}</h4>
-                      <p class="item-descripcion">${picada.descripcion}</p>
-                      <p class="item-precio">$${picada.precio}</p>
-                      <button class="agregar-btn agregar-btn_picadas" value="${picada.id}">AGREGAR</button>
-                    </div>`;
-  picadasContainer.appendChild(item);
+
+  $(picadasContainer).append(`<div class="item_container">
+                                <div class="item-img">
+                                  <img src="${picada.img}" alt="${picada.nombre}" />
+                                </div>
+                                <div class="item-detalles">
+                                  <h4 class="item-nombre">${picada.nombre}</h4>
+                                  <p class="item-descripcion">${picada.descripcion}</p>
+                                  <p class="item-precio">$${picada.precio}</p>
+                                  <button class="agregar-btn agregar-btn_picadas" value="${picada.id}">AGREGAR</button>
+                                </div>
+                              </div>`);
+
   agregarBtnPicadas[index].addEventListener("click", () => {
     Pedido.agregarProducto(picada);
     Pedido.refreshPedido();
@@ -244,18 +242,18 @@ for(veganos of listaProductos.vegano) {
                             veganos.precio, 
                             veganos.cantidad, 
                             veganos.img);
-  let item = document.createElement("div");
-  item.className = "item_container";
-  item.innerHTML = `<div class="item-img">
-                      <img src="${vegano.img}" alt="${vegano.nombre}" />
-                    </div>
-                    <div class="item-detalles">
-                      <h4 class="item-nombre">${vegano.nombre}</h4>
-                      <p class="item-descripcion">${vegano.descripcion}</p>
-                      <p class="item-precio">$${vegano.precio}</p>
-                      <button class="agregar-btn agregar-btn_veggie" value="${vegano.id}">AGREGAR</button>
-                    </div>`;
-  veggieContainer.appendChild(item);
+
+  $(veggieContainer).append(`<div class="item_container">
+                              <div class="item-img">
+                                <img src="${vegano.img}" alt="${vegano.nombre}" />
+                              </div>
+                              <div class="item-detalles">
+                                <h4 class="item-nombre">${vegano.nombre}</h4>
+                                <p class="item-descripcion">${vegano.descripcion}</p>
+                                <p class="item-precio">$${vegano.precio}</p>
+                                <button class="agregar-btn agregar-btn_veggie" value="${vegano.id}">AGREGAR</button>
+                              </div>
+                            </div>`);
   agregarBtnVeggie[index].addEventListener("click", () => {
     Pedido.agregarProducto(vegano);
     Pedido.refreshPedido();
@@ -272,18 +270,19 @@ for(cervezas of listaProductos.cervezas) {
                              cervezas.precio, 
                              cervezas.cantidad, 
                              cervezas.img);
-  let item = document.createElement("div");
-  item.className = "item_container";
-  item.innerHTML = `<div class="item-img">
-                      <img src="${cerveza.img}" alt="${cerveza.nombre}" />
-                    </div>
-                    <div class="item-detalles">
-                      <h4 class="item-nombre">${cerveza.nombre}</h4>
-                      <p class="item-descripcion">${cerveza.descripcion}</p>
-                      <p class="item-precio">$${cerveza.precio}</p>
-                      <button class="agregar-btn agregar-btn_cerveza" value="${cerveza.id}">AGREGAR</button>
-                    </div>`;
-  cervezasContainer.appendChild(item);
+
+  $(cervezasContainer).append(`<div class="item_container">
+                                <div class="item-img">
+                                  <img src="${cerveza.img}" alt="${cerveza.nombre}" />
+                                </div>
+                                <div class="item-detalles">
+                                  <h4 class="item-nombre">${cerveza.nombre}</h4>
+                                  <p class="item-descripcion">${cerveza.descripcion}</p>
+                                  <p class="item-precio">$${cerveza.precio}</p>
+                                  <button class="agregar-btn agregar-btn_cerveza" value="${cerveza.id}">AGREGAR</button>
+                                </div>
+                              </div>`);
+                              
   agregarBtnCervezas[index].addEventListener("click", () => {
     Pedido.agregarProducto(cerveza);
     Pedido.refreshPedido();
@@ -300,18 +299,19 @@ for(tragos of listaProductos.tragos) {
                            tragos.precio, 
                            tragos.cantidad, 
                            tragos.img);
-  let item = document.createElement("div");
-  item.className = "item_container";
-  item.innerHTML = `<div class="item-img">
-                      <img src="${trago.img}" alt="${trago.nombre}" />
-                    </div>
-                    <div class="item-detalles">
-                      <h4 class="item-nombre">${trago.nombre}</h4>
-                      <p class="item-descripcion">${trago.descripcion}</p>
-                      <p class="item-precio">$${trago.precio}</p>
-                      <button class="agregar-btn agregar-btn_trago" value="${trago.id}">AGREGAR</button>
-                    </div>`;
-  tragosContainer.appendChild(item);
+
+  $(tragosContainer).append(`<div class="item_container">
+                              <div class="item-img">
+                                <img src="${trago.img}" alt="${trago.nombre}" />
+                              </div>
+                              <div class="item-detalles">
+                                <h4 class="item-nombre">${trago.nombre}</h4>
+                                <p class="item-descripcion">${trago.descripcion}</p>
+                                <p class="item-precio">$${trago.precio}</p>
+                                <button class="agregar-btn agregar-btn_trago" value="${trago.id}">AGREGAR</button>
+                              </div>
+                            </div>`);
+
   agregarBtnTrago[index].addEventListener("click", () => {
     Pedido.agregarProducto(trago);
     Pedido.refreshPedido();
