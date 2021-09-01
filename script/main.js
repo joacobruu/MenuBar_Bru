@@ -2,38 +2,39 @@
 const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
 
 //Capturo los elementos del html
-const hamburguesasContainer = document.getElementById("menu_container-hamburguesas");
-const picadasContainer = document.getElementById("menu_container-picada");
-const veggieContainer = document.getElementById("menu_container-veggie");
-const cervezasContainer = document.getElementById("menu_container-cervezas");
-const tragosContainer = document.getElementById("menu_container-tragos");
+const hamburguesasContainer = $("#menu_container-hamburguesas");
+const picadasContainer = $("#menu_container-picada");
+const veggieContainer = $("#menu_container-veggie");
+const cervezasContainer = $("#menu_container-cervezas");
+const tragosContainer = $("#menu_container-tragos");
 const agregarBtnHambuguesas = document.getElementsByClassName("agregar-btn_hamburguesas");
 const agregarBtnPicadas = document.getElementsByClassName("agregar-btn_picadas");
 const agregarBtnVeggie = document.getElementsByClassName("agregar-btn_veggie");
 const agregarBtnCervezas = document.getElementsByClassName("agregar-btn_cerveza");
 const agregarBtnTrago = document.getElementsByClassName("agregar-btn_trago");
-const carritoContainer = document.getElementById("carrito_container");
+const carritoContainer = $("#carrito_container");
 const eliminarItem = document.getElementsByClassName("eliminar-btn");
-const totalPedido = document.getElementById("carrito-total");
+const totalPedido = $("#carrito-total");
 const aumentarCantidad = document.getElementsByClassName("cantidad_aumentar");
 const disminuirCantidad = document.getElementsByClassName("cantidad_diminuir");
-const toggleOn = document.getElementById("toggleOn");
-const toggleOff = document.getElementById("toggleOff");
-const comprarBtn = document.getElementById("comprarBtn");
+const toggleOn = $("#toggleOn");
+const toggleOff = $("#toggleOff");
+const comprarBtn = $("#comprarBtn");
+const totalContainer = $(".carrito_total");
 
 //Evento de click para abrir y cerrar el carrito
-toggleOn.addEventListener("click", () => {
-  let ventana = document.getElementById("ventana_carrito");
-  ventana.style.right = "0";
-});
+toggleOn.click(() => {
+  $("#ventana_carrito").animate({width: "40%"});
+  totalContainer.show();
+})
 
-toggleOff.addEventListener("click", () => {
-  let ventana = document.getElementById("ventana_carrito");
-  ventana.style.right = "-100%";
+toggleOff.click(() => {
+  $("#ventana_carrito").animate({width: "0"});
+  totalContainer.hide(600);
 });
 
 //Evento de click para terminar el pedido
-comprarBtn.addEventListener("click", () => {
+comprarBtn.on("click", () => {
   let mensaje = "Pedido realizado";
   let pedido = "";
   let total = 0;
@@ -84,9 +85,9 @@ class Pedido {
 
   //Metodo para agregar al DOM el producto en la seccion de carrito
   static refreshPedido() {
-    carritoContainer.innerHTML = "";
+    carritoContainer.empty();
     PEDIDO.forEach(producto => {
-      return $(carritoContainer).append(`<div class="carrito-item">
+      return carritoContainer.append(`<div class="carrito-item">
                                           <div class="carrito-item_detalles">
                                             <p class="carrito-item_nombre">${producto.nombre}</p>
                                             <p class="carrito-item_precio">$${producto.precio}</p>
@@ -110,8 +111,7 @@ class Pedido {
     for (let i = 0; i < PEDIDO.length; i++) {
       total += PEDIDO[i].precio * PEDIDO[i].cantidad;
     };
-    totalPedido.innerText = `TOTAL: $${total}`;
-    return totalPedido;
+    return totalPedido.text(`TOTAL: $${total}`);
   };
 
   static eliminarItem(id) {
@@ -184,7 +184,7 @@ for(hamburguesas of listaProductos.hamburguesas) {
                                  hamburguesas.img);
 
   //Agrego al DOM la plantilla de cada item con JQuery
-  $(hamburguesasContainer).append(`<div class="item_container">
+  hamburguesasContainer.append(`<div class="item_container">
                                     <div class="item-img">
                                       <img src="${hamburguesa.img}" alt="${hamburguesa.nombre}" />
                                     </div>
@@ -214,7 +214,7 @@ for(picadas of listaProductos.picada) {
                             picadas.cantidad, 
                             picadas.img);
 
-  $(picadasContainer).append(`<div class="item_container">
+  picadasContainer.append(`<div class="item_container">
                                 <div class="item-img">
                                   <img src="${picada.img}" alt="${picada.nombre}" />
                                 </div>
@@ -243,7 +243,7 @@ for(veganos of listaProductos.vegano) {
                             veganos.cantidad, 
                             veganos.img);
 
-  $(veggieContainer).append(`<div class="item_container">
+  veggieContainer.append(`<div class="item_container">
                               <div class="item-img">
                                 <img src="${vegano.img}" alt="${vegano.nombre}" />
                               </div>
@@ -271,7 +271,7 @@ for(cervezas of listaProductos.cervezas) {
                              cervezas.cantidad, 
                              cervezas.img);
 
-  $(cervezasContainer).append(`<div class="item_container">
+  cervezasContainer.append(`<div class="item_container">
                                 <div class="item-img">
                                   <img src="${cerveza.img}" alt="${cerveza.nombre}" />
                                 </div>
@@ -300,7 +300,7 @@ for(tragos of listaProductos.tragos) {
                            tragos.cantidad, 
                            tragos.img);
 
-  $(tragosContainer).append(`<div class="item_container">
+  tragosContainer.append(`<div class="item_container">
                               <div class="item-img">
                                 <img src="${trago.img}" alt="${trago.nombre}" />
                               </div>

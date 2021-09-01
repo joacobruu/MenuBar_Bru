@@ -8,6 +8,7 @@
 
 body {
   background-color: #0c0f0a;
+  overflow-x: hidden;
 }
 
 header {
@@ -80,6 +81,7 @@ header {
           text-align: center;
           margin: 1rem 1rem;
           line-height: 1.3rem;
+          padding: 1rem 0;
         }
   
         .item-precio {
@@ -110,8 +112,8 @@ header {
 
 .carrito_container {
   position: absolute;
-  width: 40%;
-  right: -100%;
+  width: 0;
+  right: 0;
   top: 0;
   height: 100%;
   display: flex;
@@ -190,15 +192,16 @@ header {
   
 
   .carrito_total {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     margin-top: 3rem;
-    width: 100%;
+    width: 50%;
 
     p {
       font-size: 1.6rem;
       font-weight: bold;
+      text-align: center;
     }
 
     button {
