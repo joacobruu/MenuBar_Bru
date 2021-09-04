@@ -1,3 +1,5 @@
+//Espero a que cargue el DOM
+$(() => {
 //Obtengo los productos de LocalStorage
 const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
 
@@ -319,3 +321,5 @@ for(tragos of listaProductos.tragos) {
     Pedido.refreshTotal();
   });
 };
+
+});
