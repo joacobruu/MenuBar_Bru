@@ -174,7 +174,7 @@ class Pedido {
   };
 }
 
-//Agrego al DOM cada producto de la lista
+
 for(hamburguesas of listaProductos.hamburguesas) {
   //Capturo el index para setear cada boton de agregar al producto correcto
   let index = listaProductos.hamburguesas.indexOf(hamburguesas);
@@ -186,7 +186,7 @@ for(hamburguesas of listaProductos.hamburguesas) {
                                  hamburguesas.img);
 
   //Agrego al DOM la plantilla de cada item con JQuery
-  hamburguesasContainer.append(`<div class="item_container">
+    hamburguesasContainer.append(`<div class="item_container">
                                     <div class="item-img">
                                       <img src="${hamburguesa.img}" alt="${hamburguesa.nombre}" />
                                     </div>
@@ -197,6 +197,7 @@ for(hamburguesas of listaProductos.hamburguesas) {
                                       <button class="agregar-btn agregar-btn_hamburguesas" value="${hamburguesa.id}">AGREGAR</button>
                                     </div>
                                   </div>`);
+  
 
   //Agrego el evento a cada boton de agregar pada agregar el producto al carrito
   agregarBtnHambuguesas[index].addEventListener("click", () => {
@@ -206,6 +207,8 @@ for(hamburguesas of listaProductos.hamburguesas) {
     Pedido.refreshTotal();
   });
 };
+
+
 
 for(picadas of listaProductos.picada) {
   let index = listaProductos.picada.indexOf(picadas);
