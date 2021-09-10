@@ -3,6 +3,9 @@ $(() => {
 //Obtengo los productos de LocalStorage
 const listaProductos = JSON.parse(localStorage.getItem("PRODUCTOS"));
 
+//API
+const APIURL = 'https://jsonplaceholder.typicode.com/posts';
+
 //Capturo los elementos del html
 const aumentarCantidad = document.getElementsByClassName("cantidad_aumentar");
 const disminuirCantidad = document.getElementsByClassName("cantidad_diminuir");
@@ -12,6 +15,7 @@ const agregarBtnVeggie = document.getElementsByClassName("agregar-btn_veggie");
 const agregarBtnCervezas = document.getElementsByClassName("agregar-btn_cerveza");
 const agregarBtnTrago = document.getElementsByClassName("agregar-btn_trago");
 const eliminarItem = document.getElementsByClassName("eliminar-btn");
+const titulo = $("h1");
 const hamburguesasContainer = $("#menu_container-hamburguesas");
 const picadasContainer = $("#menu_container-picada");
 const veggieContainer = $("#menu_container-veggie");
@@ -35,20 +39,69 @@ toggleOff.click(() => {
   totalContainer.hide(600);
 });
 
+//Animacion para H1 de la pagina
+titulo.animate({
+  opacity: "0.5"
+}, "slow").animate({
+  opacity: "1"
+}, "slow");
+
 //Evento de click para terminar el pedido
 comprarBtn.on("click", () => {
-  let mensaje = "Pedido realizado";
-  let pedido = "";
+  //Limpio el formulario
+  $("#tabla").empty();
+  $("#nombre").val("");
+  $("#direccion").val("");
+  $("#telefono").val("");
   let total = 0;
+
+  //Agrego un detalle del pedido en el formulario
   PEDIDO.forEach(item => {
-    pedido = pedido + "\n" + item.cantidad + "x " + item.nombre + " $" + item.precio*item.cantidad;
-    total += item.precio*item.cantidad;
+    $("#tabla").append(`<tr>
+                          <th>${item.nombre}</th>
+                          <th>x${item.cantidad}</th>
+                          <th>$${item.precio * item.cantidad}</th>
+                        </tr>`);
+    total += item.precio * item.cantidad;
   });
-  mensaje = mensaje + pedido + "\n\nTotal: $" + total;
-  PEDIDO.length = 0;
-  Pedido.refreshPedido();
-  Pedido.refreshTotal();
-  alert(mensaje);
+  $("#tabla").append(`<tr>
+                          <th>TOTAL</th>
+                          <th></th>
+                          <th>$${total}</th>
+                        </tr>`);
+});
+
+
+//Evento para que se abra el formulario
+$("#comprarForm").on("click", (e) => {
+  e.preventDefault();
+  if(PEDIDO.length > 0){
+    //Validacion de que esten todos los campos completos
+    if($("#nombre").val() == "" || $("#direccion").val() == "" || $("#telefono").val() == ""){
+      alert("Complete todos los datos");
+    } else {
+      //Capturo la informacion del formulario y el pedido
+      let info = {
+        nombre: $("#nombre").val(),
+        direccion: $("#direccion").val(),
+        telefono: $("#telefono").val(),
+        pedido: PEDIDO
+      };
+  
+      //Envio los datos a la api
+      $.ajax({
+        method: "POST",
+        url: APIURL,
+        data: info,
+        success: (res) => {
+          alert("Pedido exitoso!");
+          console.log(res);
+        }
+      });
+    };    
+  } else {
+    alert("Su pedido esta vacio!");
+  };
 });
 
 //Array vacio para guardar el pedido
