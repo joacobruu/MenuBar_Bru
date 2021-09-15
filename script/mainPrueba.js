@@ -71,6 +71,8 @@ const router = () => {
             console.log(res);
           }
         });
+
+        PEDIDO.length = 0;
       };    
     } else {
       alert("Su pedido esta vacio!");
