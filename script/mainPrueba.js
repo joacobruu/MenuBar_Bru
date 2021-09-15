@@ -1,4 +1,5 @@
 const app = new ProductoController(new ProductoModel(), new ProductoView());
+const APIURL = 'https://jsonplaceholder.typicode.com/posts';
 
 const router = () => {
   app.listarHamburguesas('#menu_container-hamburguesas');
@@ -58,6 +59,7 @@ const router = () => {
         };
 
         localStorage.setItem("UltimoPEDIDO", JSON.stringify(info));
+        console.log("EXITOSO");
     
         //Envio los datos a la api
         $.ajax({
@@ -85,6 +87,7 @@ const router = () => {
 
     //Agrego un detalle del pedido en el formulario
     info.pedido.forEach(item => {
+      PEDIDO.push(item);
       $("#tabla").append(`<tr>
                             <th>${item.nombre}</th>
                             <th>x${item.cantidad}</th>
@@ -109,4 +112,4 @@ const router = () => {
 
 $(window).on('load', () => {
   router();
-})
+});
