@@ -96,7 +96,8 @@ header {
       cursor: pointer; }
   .carrito_container .carrito-item_container {
     width: 90%;
-    margin-top: 2rem; }
+    margin-top: 2rem;
+  overflow-y: auto; }
     .carrito_container .carrito-item_container .carrito-item {
       display: flex;
       align-items: center;
@@ -151,4 +152,5 @@ header {
       font-size: 1.6rem;
       font-weight: bold;
       padding: 0.5rem;
+      margin-bottom: 0.5rem;
       cursor: pointer; }
