@@ -79,31 +79,27 @@ const router = () => {
 
   $("#repetirBtn").on("click", () => {
     let info = JSON.parse(localStorage.getItem("UltimoPEDIDO"));
-    if(info.pedido.length == 0) {
-      alert("No hay ningun pedido anterior registrado");
-    } else {
-      $("#tabla").empty();
-      $("#nombre").val(info.nombre);
-      $("#direccion").val(info.direccion);
-      $("#telefono").val(info.telefono);
-      let total = 0;
+    $("#tabla").empty();
+    $("#nombre").val(info.nombre);
+    $("#direccion").val(info.direccion);
+    $("#telefono").val(info.telefono);
+    let total = 0;
 
-      //Agrego un detalle del pedido en el formulario
-      info.pedido.forEach(item => {
-        PEDIDO.push(item);
-        $("#tabla").append(`<tr>
-                              <th>${item.nombre}</th>
-                              <th>x${item.cantidad}</th>
-                              <th>$${item.precio * item.cantidad}</th>
-                            </tr>`);
-        total += item.precio * item.cantidad;
-      });
+    //Agrego un detalle del pedido en el formulario
+    info.pedido.forEach(item => {
+      PEDIDO.push(item);
       $("#tabla").append(`<tr>
-                              <th>TOTAL</th>
-                              <th></th>
-                              <th>$${total}</th>
-                            </tr>`);
-    };    
+                            <th>${item.nombre}</th>
+                            <th>x${item.cantidad}</th>
+                            <th>$${item.precio * item.cantidad}</th>
+                          </tr>`);
+      total += item.precio * item.cantidad;
+    });
+    $("#tabla").append(`<tr>
+                            <th>TOTAL</th>
+                            <th></th>
+                            <th>$${total}</th>
+                          </tr>`);
   });
 
   $("#vaciarBtn").on("click", () => {
