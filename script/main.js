@@ -1,5 +1,13 @@
 const app = new ProductoController(new ProductoModel(), new ProductoView());
 const APIURL = 'https://jsonplaceholder.typicode.com/posts';
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.59196284537173, lng: -58.46002743356553 },
+    zoom: 10,
+  });
+}
 
 const router = () => {
   app.listarHamburguesas('#menu_container-hamburguesas');

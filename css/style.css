@@ -154,3 +154,8 @@ header {
       padding: 0.5rem;
       margin-bottom: 0.5rem;
       cursor: pointer; }
+
+      #map {
+        height: 250px;
+        width: 100%;
+      }
