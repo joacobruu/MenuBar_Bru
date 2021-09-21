@@ -83,42 +83,42 @@
       "id": 11,
       "nombre": "Blonde Ale",
       "descripcion": "BABA",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     },
     {
       "id": 12,
       "nombre": "Honey",
       "descripcion": "BABA",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     },
     {
       "id": 13,
       "nombre": "Scotch",
       "descripcion": "BIERHAUS",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     },
     {
       "id": 14,
       "nombre": "APA",
       "descripcion": "MINGA",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     },
     {
       "id": 15,
       "nombre": "Red IPA",
       "descripcion": "BABA",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     },
     {
       "id": 16,
       "nombre": "American IPA",
       "descripcion": "BIERHAUS",
-      "img": "https://images.unsplash.com/photo-1532377611310-4564e426e7c1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+      "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250
     }
   ],

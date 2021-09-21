@@ -112,6 +112,7 @@ const router = () => {
   });
 };
 
+
 $(window).on('load', () => {
   router();
 });
