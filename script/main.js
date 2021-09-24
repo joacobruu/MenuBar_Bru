@@ -1,7 +1,14 @@
 const app = new ProductoController(new ProductoModel(), new ProductoView());
 const APIURL = 'https://jsonplaceholder.typicode.com/posts';
-let map;
+const SECCIONES = [
+  '#menu_container-hamburguesas',
+  '#menu_container-picada',
+  '#menu_container-veggie',
+  '#menu_container-cervezas',
+  '#menu_container-tragos'
+];
 
+let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.59196284537173, lng: -58.46002743356553 },
@@ -10,20 +17,44 @@ function initMap() {
 }
 
 const router = () => {
-  app.listarHamburguesas('#menu_container-hamburguesas');
-  app.listarPicadas('#menu_container-picada');
-  app.listarVeganos('#menu_container-veggie');
-  app.listarCervezas('#menu_container-cervezas');
-  app.listarTragos('#menu_container-tragos');
+  SECCIONES.forEach(seccion => {
+    app.listarProductos(seccion);
+  });
+  // app.listarHamburguesas('#menu_container-hamburguesas');
+  // app.listarPicadas('#menu_container-picada');
+  // app.listarVeganos('#menu_container-veggie');
+  // app.listarCervezas('#menu_container-cervezas');
+  // app.listarTragos('#menu_container-tragos');
 
   $("#toggleOn").click(() => {
-    $("#ventana_carrito").animate({width: "40%"});
+    $("#ventana_carrito").animate({ width: "40%" });
     $(".carrito_total").show();
   })
-  
+
   $("#toggleOff").click(() => {
-    $("#ventana_carrito").animate({width: "0"});
+    $("#ventana_carrito").animate({ width: "0" });
     $(".carrito_total").hide(600);
+  });
+
+  //Api de google maps
+  $('#subDire').click(() => {
+    var direccion = $('#direccion').val();
+    var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${direccion}&key=AIzaSyCQetB7vKtIdydmxA1ubI-zk60PA4PKRwI`;
+    $.get(url, function (data) {
+      console.log(data.results[0].geometry.location);
+      let miUbi = { lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng };
+
+
+      let map = new google.maps.Map(document.getElementById("map"), {
+        center: miUbi,
+        zoom: 15,
+      });
+      new google.maps.Marker({
+        position: miUbi,
+        map,
+        title: "Hello World!",
+      });
+    });
   });
 
   $("#comprarBtn").on("click", () => {
@@ -33,7 +64,7 @@ const router = () => {
     $("#direccion").val("");
     $("#telefono").val("");
     let total = 0;
-  
+
     //Agrego un detalle del pedido en el formulario
     PEDIDO.forEach(item => {
       $("#tabla").append(`<tr>
@@ -53,9 +84,9 @@ const router = () => {
   //Evento para que se abra el formulario
   $("#comprarForm").on("click", (e) => {
     e.preventDefault();
-    if(PEDIDO.length > 0){
+    if (PEDIDO.length > 0) {
       //Validacion de que esten todos los campos completos
-      if($("#nombre").val() == "" || $("#direccion").val() == "" || $("#telefono").val() == ""){
+      if ($("#nombre").val() == "" || $("#direccion").val() == "" || $("#telefono").val() == "") {
         alert("Complete todos los datos");
       } else {
         //Capturo la informacion del formulario y el pedido
@@ -68,7 +99,7 @@ const router = () => {
 
         localStorage.setItem("UltimoPEDIDO", JSON.stringify(info));
         console.log("EXITOSO");
-    
+
         //Envio los datos a la api
         $.ajax({
           method: "POST",
@@ -81,7 +112,7 @@ const router = () => {
         });
 
         PEDIDO.length = 0;
-      };    
+      };
     } else {
       alert("Su pedido esta vacio!");
     };
