@@ -1,5 +1,5 @@
 {
-  "hamburguesas": [
+  "productos": [
     {
       "id": 1,
       "nombre": "Clasica",
@@ -31,10 +31,7 @@
       "img": "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80",
       "precio": 520,
       "tipo": "Hamburguesa"
-    }
-  ],
-
-  "picada": [
+    },
     {
       "id": 5,
       "nombre": "Papas Fritas del Chef",
@@ -58,10 +55,7 @@
       "img": "https://images.unsplash.com/photo-1625937759429-cb12c50970b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80",
       "precio": 500,
       "tipo": "Picada"
-    }
-  ],
-
-  "vegano": [
+    },
     {
       "id": 8,
       "nombre": "hamburguesa de Falafel",
@@ -85,10 +79,7 @@
       "img": "https://images.unsplash.com/photo-1593001872095-7d5b3868fb1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
       "precio": 500,
       "tipo": "Vegano"
-    }
-  ],
-
-  "cervezas": [
+    },
     {
       "id": 11,
       "nombre": "Blonde Ale",
@@ -136,10 +127,7 @@
       "img": "https://images.unsplash.com/photo-1532635135-630750614081?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
       "precio": 250,
       "tipo": "Cerveza"
-    }
-  ],
-
-  "tragos": [
+    },
     {
       "id": 17,
       "nombre": "Old Fashioned",
@@ -167,7 +155,7 @@
     {
       "id": 20,
       "nombre": "Fernet Branca",
-      "descripcion": "Fernet Branca con Coca-Cola",
+      "descripcion": "Fernet Branca con Coca-Cola y hielo",
       "img": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
       "precio": 300,
       "tipo": "Trago"

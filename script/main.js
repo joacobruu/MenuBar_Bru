@@ -1,35 +1,23 @@
 const app = new ProductoController(new ProductoModel(), new ProductoView());
 const APIURL = 'https://jsonplaceholder.typicode.com/posts';
-const SECCIONES = [
-  '#menu_container-hamburguesas',
-  '#menu_container-picada',
-  '#menu_container-veggie',
-  '#menu_container-cervezas',
-  '#menu_container-tragos'
-];
 
+//Inicializo el mapa de google
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.59196284537173, lng: -58.46002743356553 },
     zoom: 10,
   });
-}
+};
 
 const router = () => {
-  SECCIONES.forEach(seccion => {
-    app.listarProductos(seccion);
-  });
-  // app.listarHamburguesas('#menu_container-hamburguesas');
-  // app.listarPicadas('#menu_container-picada');
-  // app.listarVeganos('#menu_container-veggie');
-  // app.listarCervezas('#menu_container-cervezas');
-  // app.listarTragos('#menu_container-tragos');
 
-  $("#toggleOn").click(() => {
+  //Evento para abrir y cerrar el carrito
+  app.listarProductos();
+    $("#toggleOn").click(() => {
     $("#ventana_carrito").animate({ width: "40%" });
     $(".carrito_total").show();
-  })
+  });
 
   $("#toggleOff").click(() => {
     $("#ventana_carrito").animate({ width: "0" });
@@ -41,9 +29,8 @@ const router = () => {
     var direccion = $('#direccion').val();
     var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${direccion}&key=AIzaSyCQetB7vKtIdydmxA1ubI-zk60PA4PKRwI`;
     $.get(url, function (data) {
-      console.log(data.results[0].geometry.location);
       let miUbi = { lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng };
-
+      console.log(miUbi);
 
       let map = new google.maps.Map(document.getElementById("map"), {
         center: miUbi,
@@ -52,12 +39,12 @@ const router = () => {
       new google.maps.Marker({
         position: miUbi,
         map,
-        title: "Hello World!",
+        title: "Ubicacion",
       });
     });
   });
 
-  $("#comprarBtn").on("click", () => {
+    $("#comprarBtn").on("click", () => {
     //Limpio el formulario
     $("#tabla").empty();
     $("#nombre").val("");
@@ -150,7 +137,6 @@ const router = () => {
     Pedido.refreshTotal();
   });
 };
-
 
 $(window).on('load', () => {
   router();
