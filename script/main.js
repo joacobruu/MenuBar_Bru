@@ -1,7 +1,7 @@
 const app = new ProductoController(new ProductoModel(), new ProductoView());
 const APIURL = 'https://jsonplaceholder.typicode.com/posts';
 
-//Inicializo el mapa de google
+//Inicializo el mapa de google centrado en Bs. As.
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -24,18 +24,21 @@ const router = () => {
     $(".carrito_total").hide(600);
   });
 
-  //Api de google maps
+  //Api de google maps y Geolocation
   $('#subDire').click(() => {
     var direccion = $('#direccion').val();
     var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${direccion}&key=AIzaSyCQetB7vKtIdydmxA1ubI-zk60PA4PKRwI`;
     $.get(url, function (data) {
+      //Obtengo la localizacion y la paso por Geolocation API
       let miUbi = { lat: data.results[0].geometry.location.lat, lng: data.results[0].geometry.location.lng };
       console.log(miUbi);
 
+      //Centro el mapa en MiUIbi
       let map = new google.maps.Map(document.getElementById("map"), {
         center: miUbi,
         zoom: 15,
       });
+      //Agergo el marcador al mapa
       new google.maps.Marker({
         position: miUbi,
         map,
