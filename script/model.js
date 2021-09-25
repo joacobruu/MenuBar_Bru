@@ -13,6 +13,6 @@ class Producto {
   class ProductoModel {
     constructor() {
         const productos = JSON.parse(localStorage.getItem("PRODUCTOS")) || [];
-        this.productos = productos.map(producto => new Producto(producto));
+        this.productos = productos.productos.map(producto => new Producto(producto));
     };
   };
