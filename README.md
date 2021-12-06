@@ -8,4 +8,4 @@ Pagina web para Bar con carrito de compras y utilizacion de APIs
 
 ## Deploy
 
-Link [Github Pages](https://joacobruu.github.io/MenuBar_Bru/)
+Link [Github Pages](http://joacobruu.github.io/Joaquin_Bru-MakeUp-React)
